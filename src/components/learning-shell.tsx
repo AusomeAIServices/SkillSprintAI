@@ -3,18 +3,21 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { AIUnderstandingJourney } from "@/components/ai-understanding-journey";
+import { learningPaths } from "@/modules/learning/pathways";
 import { STEP_IDS, type Attempt, type LearnerDraft, type LearnerLesson, type PrivateArtifact, type StepId } from "@/modules/learning/types";
 
 type SavePatch = { currentStep?: StepId; draftPatch?: Partial<LearnerDraft> };
 type SaveState = "saved" | "saving" | "error";
 const stepDescriptions: Record<StepId, string> = { recall: "You already know how to ask a question. Here is what changes.", learn: "Use everyday words, add helpful details and ask a follow-up.", apply: "Practise with a familiar task and fictional information.", check: "Choose an answer for each question, then rate your own work.", reflect: "Save one result you can return to and reuse." };
-const paths = [
-  { icon: "✦", color: "", title: "Everyday AI", detail: "Useful AI skills for everyday life", state: "Ready to start" },
-  { icon: "▤", color: "green", title: "AI at Work", detail: "Writing, summaries and repeatable workflows", state: "Coming soon" },
-  { icon: "◎", color: "amber", title: "Lead with AI", detail: "Choose and guide responsible AI projects", state: "Planned" },
-  { icon: "⌘", color: "blue", title: "Build with Codex", detail: "Turn ideas into tested code changes", state: "Planned" },
-  { icon: "✎", color: "amber", title: "AI for Students", detail: "Understand hard topics without letting AI do the learning for you", state: "Guide preview", href: "#study-guide" },
-];
+const pathIcons: Record<string, { icon: string; color: string }> = {
+  "everyday-ai": { icon: "✦", color: "" },
+  "ai-for-students": { icon: "✎", color: "amber" },
+  "ai-at-work": { icon: "▤", color: "green" },
+  "professional-practice": { icon: "◈", color: "blue" },
+  "lead-with-ai": { icon: "◎", color: "amber" },
+  "build-with-codex": { icon: "⌘", color: "blue" },
+  "build-ai-systems": { icon: "◇", color: "green" },
+};
 
 function Icon({ children }: { children: ReactNode }) { return <span className="nav-icon" aria-hidden="true">{children}</span>; }
 function TopBar() {
@@ -272,10 +275,10 @@ export default function LearningShell() {
         <p className="preview-notice">F01 is an optional full practice for the Google vs ChatGPT topic, using fictional examples. No ChatGPT account is needed, and nothing is sent to ChatGPT.</p>
       </div></section>
       <div className="section-heading" id="paths"><h2>Choose a learning path</h2><a href="#paths">Browse paths&nbsp; →</a></div>
-      <section className="path-grid" aria-label="Learning paths">{paths.map((path) => <article className="path-card" key={path.title}>
-        <div className="path-top"><span className={"path-icon " + path.color}>{path.icon}</span><span className="planned-chip">{path.state}</span></div>
-        <h3 className="path-title">{path.title}</h3><p className="path-description">{path.detail}</p>
-        {"href" in path && <a className="path-link" href={path.href}>Open the study guide <span aria-hidden="true">→</span></a>}
+      <section className="path-grid" aria-label="Learning paths">{learningPaths.map((path) => <article className="path-card" key={path.slug}>
+        <div className="path-top"><span className={"path-icon " + pathIcons[path.slug].color}>{pathIcons[path.slug].icon}</span><span className="planned-chip">{path.units.length} × 15 min</span></div>
+        <h3 className="path-title">{path.title}</h3><p className="path-description">{path.description}</p>
+        <Link className="path-link" href={"/paths/" + path.slug}>Explore path <span aria-hidden="true">→</span></Link>
       </article>)}</section>
       <section className="study-guide progress-card" id="study-guide" aria-labelledby="study-guide-title">
         <div className="progress-head"><strong id="study-guide-title">AI for Students: learn the idea, not just the answer</strong><span>Study guide preview · 15-minute practice</span></div>

@@ -3,9 +3,9 @@
 **One useful AI skill. One practical result. Fifteen minutes.**
 
 Working product name: **SkillSprint AI**. Repository working name: `openai-microlearn`.
-Prepared 23 September 2026. Status: local M1 F01 vertical slice implemented; auth, the complete 20-lesson curriculum, coaching and cloud deployment remain deferred. The working name has not been checked for trademark or domain availability.
+Prepared 23 September 2026. Status: local M1 F01 vertical slice plus a seven-path, 112-unit self-guided course preview; auth, reviewed/scored lessons beyond F01, coaching and cloud deployment remain deferred. The working name has not been checked for trademark or domain availability.
 
-SkillSprint AI turns AI learning into a daily practice: choose an outcome, learn a small concept, apply it to a realistic task, check the result, and save evidence of a skill. Its first lesson starts with what a Google-search user already knows, then shows how ChatGPT can explain, draft, summarize or organize information—and why important facts still need checking. Learners plan 15, 30, 45, or 60 minutes a day. The working prototype has one complete, local-only 15-minute F01 lesson.
+SkillSprint AI turns AI learning into a daily practice: choose an outcome, learn a small concept, apply it to a realistic task, check the result, and save evidence of a skill. Its first lesson starts with what a Google-search user already knows, then shows how ChatGPT can explain, draft, summarize or organize information—and why important facts still need checking. Learners plan 15, 30, 45, or 60 minutes a day. The working prototype has one scored local-only 15-minute F01 draft lesson and 112 self-guided practice units across seven paths.
 
 The product serves individuals, information workers, nontechnical professionals, executives, IT professionals, and AI practitioners. Launch with everyday ChatGPT and workplace outcomes; expand into Codex, agent development, and orchestration after the learning loop is validated.
 
@@ -15,7 +15,7 @@ The product serves individuals, information workers, nontechnical professionals,
 |---|---|
 | [Strategy](docs/01-strategy.md) | Positioning, audience, business model, launch experiments, economics |
 | [Product requirements](docs/02-product-requirements.md) | MVP scope, user journeys, acceptance criteria, metrics |
-| [Learning system and curriculum](docs/03-learning-and-curriculum.md) | 15-minute framework, six pathways, assessment, ChatGPT in a Day |
+| [Learning system and curriculum](docs/03-learning-and-curriculum.md) | 15-minute framework, seven pathways, assessment, ChatGPT in a Day |
 | [UX and UI specification](docs/04-ux-ui.md) | Navigation, screens, wireframes, interaction and accessibility |
 | [Architecture](docs/05-architecture.md) | Stack, data model, APIs, tutor boundaries, deployment and cloud portability |
 | [Delivery and QA](docs/06-delivery-and-quality.md) | Milestones, backlog, acceptance tests, security, AI evaluations |
@@ -37,9 +37,9 @@ The product serves individuals, information workers, nontechnical professionals,
 
 Open this folder in VS Code with Codex. Read the strategy and MVP scope, then paste [the unified prompt](prompts/UNIFIED-CODEX-TEAM-PROMPT.md) into Codex. It explicitly authorizes bounded specialist delegation, defines file ownership and gates, and provides a sequential fallback when subagents are unavailable.
 
-## Run the local F01 preview
+## Run the local learning preview
 
-Requires Node.js 24.15+ (the app uses the built-in SQLite module). The seed is a draft for synthetic practice and is not approved course content.
+Requires Node.js 24.15+ (the app uses the built-in SQLite module). The F01 seed and the seven-path practice curriculum are drafts for synthetic learning and are not approved course content.
 
 ```powershell
 npm ci
@@ -48,7 +48,7 @@ $env:SKILLSPRINT_DB_PATH = '.data/skillsprint-local.sqlite'
 npm run dev
 ```
 
-Open `http://localhost:3000`. Attempts persist in the ignored `.data` SQLite file. The preview uses a single synthetic local learner; do not host it or enter real learner data. It makes no OpenAI calls. To check it, run `npm run typecheck`, `npm run test`, `npm run lint`, `npm run content:validate`, and `npm run build`. Browser tests need Chromium installed with `npx playwright install chromium`, then `npm run test:e2e`.
+Open `http://localhost:3000`. Attempts persist in the ignored `.data` SQLite file. The preview uses a single synthetic local learner for F01. Other path drafts save only in the current browser and are self-reported practice, not scored completion or proficiency. Do not host the preview or enter real learner data. It makes no OpenAI calls. To check it, run `npm run typecheck`, `npm run test`, `npm run lint`, `npm run content:validate`, and `npm run build`. Browser tests need Chromium installed with `npx playwright install chromium`, then `npm run test:e2e`.
 
 The source is published at [AusomeAIServices/SkillSprintAI](https://github.com/AusomeAIServices/SkillSprintAI). No cloud resources or paid subscriptions have been created.
 

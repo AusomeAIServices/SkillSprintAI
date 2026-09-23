@@ -1,6 +1,6 @@
 # Implementation status
 
-Updated: 23 September 2026. Stage: M0 complete; M1 local F01 vertical slice plus static What is AI? journey preview.
+Updated: 23 September 2026. Stage: M0 complete; M1 local F01 vertical slice plus seven-path self-guided curriculum preview.
 
 ## Repository inspection
 
@@ -25,15 +25,15 @@ Updated: 23 September 2026. Stage: M0 complete; M1 local F01 vertical slice plus
 | Milestone | State | Evidence / next step |
 |---|---|---|
 | M0 contracts | Complete | Decisions and status documented; root instructions added |
-| M1 F01 local slice | Complete | Search-to-ChatGPT beginner onboarding, F01 lesson v1.3.0, three-wave, nine-milestone What is AI? journey preview (27 topics, Easy/Hard/Advanced at each milestone, local XP and badge progression), copy-ready prompt helper, optional full F01 practice, student study-guide preview, dashboard-first startup with explicit resume/review, version-aware resume, local SQLite persistence, deterministic assessment, private evidence and review scheduling; build and automated checks pass |
+| M1 F01 local slice | Complete | Search-to-ChatGPT beginner onboarding, F01 lesson v1.3.0, three-wave, nine-milestone What is AI? journey preview (27 topics, Easy/Hard/Advanced at each milestone, local XP and badge progression), copy-ready prompt helper, optional full F01 practice, student study-guide preview, seven navigable self-guided paths containing 112 authored practice prompts across 26 modules, browser-local draft and practice tracking, dashboard-first startup with explicit resume/review, version-aware resume, local SQLite persistence, deterministic assessment, private evidence and review scheduling; build and automated checks pass |
 | M2 auth/PostgreSQL/20 lessons | Not started | Requires maintained auth choice, database setup, and 19 reviewed lessons |
 | M3 optional coach | Not started | Keep disabled; needs adapter, budget controls, evaluations and authorized config |
 | M4 pilot readiness | Not started | Requires remaining quality evidence and human/editorial/user inputs |
 
 ## Validation record
 
-- `npm run typecheck`, `npm run lint`, `npm run test` (10 tests across 4 files), `npm run content:validate`, and `npm run build` pass.
-- `npm run test:e2e` passes two Chromium journeys: prompt helper and student guide, plus the F01 journey including answer-key privacy, navigation, draft persistence after reload, deterministic scoring, completion, private evidence and 320 px layout.
+- `npm run typecheck`, `npm run lint`, `npm run test` (11 tests across 5 files), `npm run content:validate`, and `npm run build` pass.
+- `npm run test:e2e` passes five Chromium tests covering all seven path pages and: prompt helper and student guide, plus the F01 journey including answer-key privacy, navigation, draft persistence after reload, deterministic scoring, completion, private evidence and 320 px layout.
 - Desktop and mobile layouts were inspected in the in-app browser; no horizontal overflow was found at the inspected mobile viewport.
 - The authored lesson passes schema, timing, answer-key and rubric checks; it remains a draft pending human editorial review.
 - The environment has Node.js v24.18.0 and npm 11.16.0. Docker daemon is unavailable.
@@ -42,5 +42,11 @@ Updated: 23 September 2026. Stage: M0 complete; M1 local F01 vertical slice plus
 
 - Local demo requires Node.js 24.15+ for the built-in SQLite module; SQLite remains a development-only adapter.
 - SQLite in Node 24 is experimental and only suitable as an isolated local M1 adapter; production should use the PostgreSQL path in the architecture.
-- The authored lesson is explicitly pending human editorial review; it cannot be represented as published pilot content. Student pathway is a roadmap preview, not an enrolled or AI-powered course.
+- The authored lesson is explicitly pending human editorial review; it cannot be represented as published pilot content. All seven paths now have navigable self-guided draft units. These are not reviewed, scored, enrolled, or AI-powered courses; only F01 has a server-scored draft assessment. Browser-local practice records are not completion, proficiency, or transfer evidence.
 - The workspace source is published at https://github.com/AusomeAIServices/SkillSprintAI on branch main. No cloud resources or paid subscriptions have been created.
+
+## Seven-path preview addition
+
+- Added all seven curriculum paths (8 + 8 + 12 + 16 + 12 + 24 + 32 = 112 units) to the main menu. Each path opens a course page with ordered modules and unique unit practice tasks.
+- Each unit shows a 15-minute recall → learn → apply → check → reflect scaffold, tailored module guidance, synthetic practice material, local draft persistence, and a self-reported “practised” indicator. No model call, automatic scoring, or credential is implied.
+- Added catalog validation and Chromium navigation/persistence coverage. Human editorial review, supplied lesson-specific source fixtures, deterministic assessments, authenticated persistence, and live advanced labs are still needed before these paths can be called complete published courses.
