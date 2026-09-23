@@ -2,6 +2,11 @@ import { expect, test } from "@playwright/test";
 
 test("beginner prompt helper offers plain language, Tagalog and a student study guide", async ({ page }) => {
   await page.goto("/");
+  await expect(page.getByText("LESSON 1 · ABOUT 15 MIN", { exact: true })).toBeVisible();
+  await expect(page.getByText("LESSON 2 · NEXT UP", { exact: true })).toBeVisible();
+  const firstTwoSections = await page.locator("main.main-column > section").evaluateAll((elements) => elements.slice(0, 2).map((element) => element.className));
+  expect(firstTwoSections[0]).toContain("explanation-helper");
+  expect(firstTwoSections[1]).toContain("hero-card");
   await expect(page.getByText("Ask AI to explain it your way", { exact: true })).toBeVisible();
   await page.getByLabel("What do you want to understand?").fill("fractions");
   await page.getByRole("button", { name: "Tagalog", exact: true }).click();
@@ -25,9 +30,9 @@ test("learner completes F01, saves private evidence, and resumes after reload", 
 
   await page.goto("/");
   await expect(page.getByRole("heading", { name: "New to AI? Start with what you already know." })).toBeVisible();
-  await expect(page.getByText(/If you can search Google, you can start a conversation with ChatGPT/)).toBeVisible();
+  await expect(page.getByText(/Start by asking AI to explain one topic in a way that works for you/)).toBeVisible();
   await expect(page.getByRole("heading", { name: "From Google search to ChatGPT" })).toBeVisible();
-  await page.getByRole("button", { name: /Start your first AI lesson/ }).click();
+  await page.getByRole("button", { name: /Start lesson 2/ }).click();
   await expect(page.getByRole("heading", { name: "Your first useful question for ChatGPT" })).toBeVisible();
   await page.getByRole("button", { name: /Save and continue/ }).click();
   await expect(page.getByRole("heading", { name: "The four parts, in this example" })).toBeVisible();

@@ -222,24 +222,16 @@ export default function LearningShell() {
   return <><TopBar /><div className="app-layout" id="today">
     <NavLinks />
     <main className="main-column">
-      <div className="welcome-row"><div><div className="eyebrow">YOUR DAILY PRACTICE</div><h1>New to AI? Start with what you already know.</h1><p>If you can search Google, you can start a conversation with ChatGPT. No AI experience needed.</p></div>
+      <div className="welcome-row"><div><div className="eyebrow">YOUR DAILY PRACTICE</div><h1>New to AI? Start with what you already know.</h1><p>Start by asking AI to explain one topic in a way that works for you. Then learn how ChatGPT differs from Google Search. No AI experience needed.</p></div>
         <label className="field" style={{ maxWidth: 138 }}><span className="sr-only">Choose daily learning time</span><select className="duration-select" value={duration} onChange={(event) => {
           const next = Number(event.target.value); setDuration(next);
           try { localStorage.setItem("skillsprint-daily-minutes", String(next)); } catch { /* optional preference */ }
         }} aria-label="Daily learning time"><option value={15}>15 minutes</option><option value={30}>30 minutes</option><option value={45}>45 minutes</option><option value={60}>60 minutes</option></select></label>
       </div>
       {message && <p className="inline-error" role="alert">{message}</p>}
-      <section className="hero-card" aria-labelledby="today-title"><div className="hero-content">
-        <div className="pill-row"><span className="pill">✦ TODAY&apos;S PICK</span><span className="pill neutral">{sessionUnits} × 15 min</span></div>
-        <h2 id="today-title">From Google search to ChatGPT</h2>
-        <p>See how a familiar question can become an explanation, a draft or a simple plan—and when to check the answer.</p>
-        <div className="hero-meta"><span>◷ &nbsp;15 min</span><span className="meta-dot" /><span>Beginner friendly</span><span className="meta-dot" /><span>Everyday AI</span></div>
-        <div className="button-row"><button className="primary-button" onClick={() => void startLesson()}>Start your first AI lesson <span aria-hidden="true">→</span></button><span style={{ color: "var(--muted)", fontSize: 11 }}>{sessionUnits > 1 ? "One of " + sessionUnits + " planned units is ready in this preview." : "One complete learning unit"}</span></div>
-        <p className="preview-notice">F01 is a draft preview with fictional practice. No ChatGPT account is needed, and nothing is sent to ChatGPT.</p>
-      </div></section>
       <section className="explanation-helper progress-card" aria-labelledby="explanation-helper-title">
-        <div className="progress-head"><strong id="explanation-helper-title">Ask AI to explain it your way</strong><span>Copy a prompt for ChatGPT</span></div>
-        <p>Choose a style, add a topic, and copy this request into ChatGPT. The preview does not send anything or generate an AI answer in this app.</p>
+        <div className="progress-head"><div><div className="eyebrow">LESSON 1 · ABOUT 15 MIN</div><strong id="explanation-helper-title">Ask AI to explain it your way</strong></div><span>Beginner · Copy a prompt for ChatGPT</span></div>
+        <p>Start with a topic you are curious about. Choose a style, add the topic, and copy this request into ChatGPT. The preview does not send anything or generate an AI answer in this app.</p>
         <label className="field"><span>What do you want to understand?</span><input value={studyTopic} onChange={(event) => setStudyTopic(event.target.value)} maxLength={180} placeholder="For example: how inflation works" /></label>
         <div className="style-choices" role="group" aria-label="Explanation style">
           <button type="button" className={explanationStyle === "simple" ? "style-choice selected" : "style-choice"} aria-pressed={explanationStyle === "simple"} onClick={() => { setExplanationStyle("simple"); setCopyState(""); }}>Simple words</button>
@@ -248,8 +240,17 @@ export default function LearningShell() {
         </div>
         <blockquote className="prompt-preview">{explanationPrompt}</blockquote>
         <div className="button-row"><button className="secondary-button" type="button" onClick={() => void copyExplanationPrompt()}>Copy prompt</button><span aria-live="polite" className="copy-status">{copyState}</span></div>
+        <p className="prompt-practice-note">Practice: try the same topic in two styles, notice which explanation helps, and check one important fact.</p>
         <p className="preview-notice">Avoid sharing passwords, private records or personal details. Check important facts with a trusted source.</p>
       </section>
+      <section className="hero-card" aria-labelledby="today-title"><div className="hero-content">
+        <div className="pill-row"><span className="pill">LESSON 2 · NEXT UP</span><span className="pill neutral">15 min</span></div>
+        <h2 id="today-title">From Google search to ChatGPT</h2>
+        <p>See how a familiar question can become an explanation, a draft or a simple plan—and when to check the answer.</p>
+        <div className="hero-meta"><span>◷ &nbsp;15 min</span><span className="meta-dot" /><span>Beginner friendly</span><span className="meta-dot" /><span>Everyday AI</span></div>
+        <div className="button-row"><button className="primary-button" onClick={() => void startLesson()}>Start lesson 2 <span aria-hidden="true">→</span></button><span style={{ color: "var(--muted)", fontSize: 11 }}>{sessionUnits > 1 ? "One of " + sessionUnits + " planned units is ready in this preview." : "One complete learning unit"}</span></div>
+        <p className="preview-notice">This is the next step after your first prompt practice. F01 is a draft preview with fictional practice. No ChatGPT account is needed, and nothing is sent to ChatGPT.</p>
+      </div></section>
       <div className="section-heading" id="paths"><h2>Choose a learning path</h2><a href="#paths">Browse paths&nbsp; →</a></div>
       <section className="path-grid" aria-label="Learning paths">{paths.map((path) => <article className="path-card" key={path.title}>
         <div className="path-top"><span className={"path-icon " + path.color}>{path.icon}</span><span className="planned-chip">{path.state}</span></div>

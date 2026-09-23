@@ -20,6 +20,8 @@ At 30 minutes, complete two units; at 45 minutes, three; at 60 minutes, four. Re
 
 Eight lessons = 120 minutes of active learning, optionally spread across eight days. Breaks and account setup are additional. The outcome is beginner confidence on common tasks, with an understanding of verification and privacy.
 
+The home preview puts two introductory learning experiences in this order: (1) **Ask AI to explain it your way**, a guided 15-minute prompt-building practice; (2) **From Google search to ChatGPT** (F01), a 15-minute introduction to conversational AI. The first is a copy-ready helper, not a live AI call or progress-tracked attempt; F01 remains a draft lesson.
+
 | ID | Lesson | Evidence |
 |---|---|---|
 | F01 | Start from Google Search: learn what ChatGPT can explain, draft and organize; explain goal, context, constraints and output; check important facts | A first ChatGPT-style request and a checked fictional plan |
