@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
+import { AIUnderstandingJourney } from "@/components/ai-understanding-journey";
 import { STEP_IDS, type Attempt, type LearnerDraft, type LearnerLesson, type PrivateArtifact, type StepId } from "@/modules/learning/types";
 
 type SavePatch = { currentStep?: StepId; draftPatch?: Partial<LearnerDraft> };
@@ -229,8 +230,9 @@ export default function LearningShell() {
         }} aria-label="Daily learning time"><option value={15}>15 minutes</option><option value={30}>30 minutes</option><option value={45}>45 minutes</option><option value={60}>60 minutes</option></select></label>
       </div>
       {message && <p className="inline-error" role="alert">{message}</p>}
+      <AIUnderstandingJourney onStartSearchPractice={() => void startLesson()} />
       <section className="explanation-helper progress-card" aria-labelledby="explanation-helper-title">
-        <div className="progress-head"><div><div className="eyebrow">LESSON 1 · ABOUT 15 MIN</div><strong id="explanation-helper-title">Ask AI to explain it your way</strong></div><span>Beginner · Copy a prompt for ChatGPT</span></div>
+        <div className="progress-head"><div><div className="eyebrow">PROMPT PRACTICE · ABOUT 5 MIN</div><strong id="explanation-helper-title">Build a prompt to try with ChatGPT</strong></div><span>Beginner · Copy a prompt for ChatGPT</span></div>
         <p>Start with a topic you are curious about. Choose a style, add the topic, and copy this request into ChatGPT. The preview does not send anything or generate an AI answer in this app.</p>
         <label className="field"><span>What do you want to understand?</span><input value={studyTopic} onChange={(event) => setStudyTopic(event.target.value)} maxLength={180} placeholder="For example: how inflation works" /></label>
         <div className="style-choices" role="group" aria-label="Explanation style">
@@ -244,12 +246,12 @@ export default function LearningShell() {
         <p className="preview-notice">Avoid sharing passwords, private records or personal details. Check important facts with a trusted source.</p>
       </section>
       <section className="hero-card" aria-labelledby="today-title"><div className="hero-content">
-        <div className="pill-row"><span className="pill">LESSON 2 · NEXT UP</span><span className="pill neutral">15 min</span></div>
+        <div className="pill-row"><span className="pill">FULL PRACTICE · F01</span><span className="pill neutral">15 min</span></div>
         <h2 id="today-title">From Google search to ChatGPT</h2>
         <p>See how a familiar question can become an explanation, a draft or a simple plan—and when to check the answer.</p>
         <div className="hero-meta"><span>◷ &nbsp;15 min</span><span className="meta-dot" /><span>Beginner friendly</span><span className="meta-dot" /><span>Everyday AI</span></div>
-        <div className="button-row"><button className="primary-button" onClick={() => void startLesson()}>Start lesson 2 <span aria-hidden="true">→</span></button><span style={{ color: "var(--muted)", fontSize: 11 }}>{sessionUnits > 1 ? "One of " + sessionUnits + " planned units is ready in this preview." : "One complete learning unit"}</span></div>
-        <p className="preview-notice">This is the next step after your first prompt practice. F01 is a draft preview with fictional practice. No ChatGPT account is needed, and nothing is sent to ChatGPT.</p>
+        <div className="button-row"><button className="primary-button" onClick={() => void startLesson()}>Open full Google vs ChatGPT practice <span aria-hidden="true">→</span></button><span style={{ color: "var(--muted)", fontSize: 11 }}>{sessionUnits > 1 ? "One of " + sessionUnits + " planned units is ready in this preview." : "One complete learning unit"}</span></div>
+        <p className="preview-notice">F01 is an optional full practice for the Google vs ChatGPT topic, using fictional examples. No ChatGPT account is needed, and nothing is sent to ChatGPT.</p>
       </div></section>
       <div className="section-heading" id="paths"><h2>Choose a learning path</h2><a href="#paths">Browse paths&nbsp; →</a></div>
       <section className="path-grid" aria-label="Learning paths">{paths.map((path) => <article className="path-card" key={path.title}>

@@ -20,7 +20,15 @@ At 30 minutes, complete two units; at 45 minutes, three; at 60 minutes, four. Re
 
 Eight lessons = 120 minutes of active learning, optionally spread across eight days. Breaks and account setup are additional. The outcome is beginner confidence on common tasks, with an understanding of verification and privacy.
 
-The home preview puts two introductory learning experiences in this order: (1) **Ask AI to explain it your way**, a guided 15-minute prompt-building practice; (2) **From Google search to ChatGPT** (F01), a 15-minute introduction to conversational AI. The first is a copy-ready helper, not a live AI call or progress-tracked attempt; F01 remains a draft lesson.
+The home preview begins with the **AI Understanding Journey**, a self-paced sequence of three waves, nine milestones, and 27 bite-sized topics. Each milestone has an Easy, Hard, and Advanced topic. The first topic is **Ask AI to explain it your way**; the second is **From Google search to ChatGPT**. The learner reads a plain-language explanation and a small practice, then chooses **AI Understand** to advance. This is a self-attested navigation choice, not a scored knowledge check. The optional F01 button opens the complete 15-minute draft lesson. A separate prompt helper supports Simple words, “Explain like I’m 5,” or Tagalog and copies a prompt for use in ChatGPT; this preview does not make a model call.
+
+### AI Understanding Journey waves and milestones
+
+1. **Get comfortable with AI:** Start a useful conversation (explain it your way → Google vs ChatGPT → use both together); Make your request clear (say what you want → add useful context and limits → specify and refine the output); Learn with AI (simple explanations → one-question-at-a-time practice → teach it back).
+2. **Put AI to work:** Handle everyday tasks (plan a day → organize choices → review a reusable plan); Learn with AI as a student (understand one hard topic → practise retrieval → check and teach back); Use AI at work (draft a message → summarize supplied notes → create a repeatable workflow).
+3. **Use AI with care and build further:** Check answers and protect information (spot uncertainty → verify claims → minimize sensitive data); Lead responsible adoption (choose a task → identify risk and review → define a pilot); Build with Codex and agents (describe a change → inspect and test code → coordinate bounded agents).
+
+Each button click completes one topic and adds 10 locally stored XP. A badge is awarded after all three topics in a milestone. The interface shows the current wave, milestone and difficulty, plus completed/upcoming milestones. There are no streaks, time pressure, leaderboard or model-generated completion decisions. Progress is stored in the current browser on the current device, not an account or server. These rewards are orientation and encouragement, not evidence of proficiency. The curriculum topics are authored and static; full checks and evidence remain inside dedicated lessons such as F01.
 
 | ID | Lesson | Evidence |
 |---|---|---|

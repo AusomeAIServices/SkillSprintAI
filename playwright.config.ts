@@ -5,7 +5,8 @@ const testPort = process.env.PLAYWRIGHT_TEST_PORT || "3100";
 
 export default defineConfig({
   testDir: "./tests/e2e",
-  fullyParallel: true,
+  // E2E tests share one local demo learner and database; serialize to avoid cross-test writes.
+  fullyParallel: false,
   reporter: "list",
   use: { baseURL: "http://localhost:" + testPort, trace: "retain-on-failure" },
   projects: [{ name: "chromium", use: { browserName: "chromium", viewport: { width: 1280, height: 900 } } }],
