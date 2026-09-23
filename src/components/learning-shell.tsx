@@ -34,6 +34,7 @@ function NavLinks({ mobile = false }: { mobile?: boolean }) {
 
 export default function LearningShell() {
   const [currentStep, setCurrentStep] = useState<StepId | null>(null);
+  const [showCompletion, setShowCompletion] = useState(false);
   const [attempt, setAttempt] = useState<Attempt | null>(null);
   const [lessonData, setLessonData] = useState<LearnerLesson | null>(null);
   const [artifact, setArtifact] = useState<PrivateArtifact | null>(null);
@@ -103,7 +104,6 @@ export default function LearningShell() {
         if (!mounted) return;
         if (loaded.attempt) {
           setLatestAttempt(loaded.attempt as Attempt);
-          if (!loaded.attempt.completedAt) setCurrentStep((loaded.attempt.currentStep || "recall") as StepId);
           setAnswers(loaded.attempt.draft.quizAnswers || {});
           const progress = await request("/api/progress");
           if (!mounted) return;
@@ -119,7 +119,18 @@ export default function LearningShell() {
   }, [request, setLatestAttempt]);
 
   const startLesson = useCallback(async () => {
-    setMessage(""); setIsLoading(true);
+    setMessage("");
+    if (attempt?.completedAt) {
+      if (artifact) setShowCompletion(true);
+      else setMessage("Your completed practice is saved, but its result could not be loaded. Refresh and try again.");
+      return;
+    }
+    if (attempt) {
+      setCurrentStep((attempt.currentStep || "recall") as StepId);
+      window.setTimeout(() => document.getElementById("lesson-title")?.focus(), 0);
+      return;
+    }
+    setIsLoading(true);
     try {
       const result = await request("/api/attempts/current", { method: "POST" });
       setLatestAttempt(result.attempt as Attempt);
@@ -127,7 +138,7 @@ export default function LearningShell() {
       window.setTimeout(() => document.getElementById("lesson-title")?.focus(), 0);
     } catch { setMessage("We couldn't open the lesson. Your saved work has not been changed."); }
     finally { setIsLoading(false); }
-  }, [request, setLatestAttempt]);
+  }, [artifact, attempt, request, setLatestAttempt]);
 
   const updateDraft = useCallback((field: keyof LearnerDraft, value: string | Record<string, number> | Record<string, string>) => {
     const existing = attempt;
@@ -146,9 +157,14 @@ export default function LearningShell() {
     }, 350);
   }, [attempt, enqueuePatch, setLatestAttempt]);
 
-  const saveNow = useCallback(async () => {
-    try { await flushPendingDraft(); await enqueuePatch({}); setMessage("Your work is saved on this device."); }
-    catch { setSaveState("error"); setMessage("We couldn't save your latest change. Your text remains on screen; try again."); }
+  const saveAndExit = useCallback(async () => {
+    try {
+      await flushPendingDraft();
+      await enqueuePatch({});
+      setCurrentStep(null);
+      setMessage("Your lesson is saved. Continue it when you're ready.");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } catch { setSaveState("error"); setMessage("We couldn't save your latest change. Your text remains on screen; try again."); }
   }, [enqueuePatch, flushPendingDraft]);
 
   const navigateStep = useCallback(async (nextIndex: number) => {
@@ -186,7 +202,7 @@ export default function LearningShell() {
     try {
       await flushPendingDraft();
       const result = await request("/api/attempts/" + current.id + "/complete", { method: "POST", body: "{}" });
-      setLatestAttempt(result.attempt as Attempt); setArtifact(result.artifact as PrivateArtifact | null); setCurrentStep(null);
+      setLatestAttempt(result.attempt as Attempt); setArtifact(result.artifact as PrivateArtifact | null); setCurrentStep(null); setShowCompletion(true);
       await refreshProgress(); window.scrollTo({ top: 0, behavior: "smooth" });
     } catch (error) {
       if ((error as { status?: number }).status === 400) setMessage("Finish all five steps, save each practice field, answer all three questions and complete the self-check before finishing.");
@@ -210,16 +226,17 @@ export default function LearningShell() {
       setCopyState("Copy is unavailable here. Select and copy the prompt above.");
     }
   };
+  const practiceActionLabel = attempt?.completedAt ? "Review completed Google vs ChatGPT practice" : attempt ? "Continue Google vs ChatGPT practice" : "Open full Google vs ChatGPT practice";
   const progressPercent = attempt?.completedAt ? 100 : attempt ? Math.round((attempt.visitedSteps.length / 5) * 100) : 0;
   if (isLoading && !attempt) return <><TopBar /><main className="app-layout"><div className="loading-card" role="status">Opening your learning space…</div></main></>;
 
   if (currentStep && attempt && lessonData) return <><TopBar /><LessonWorkspace currentStep={currentStep} attempt={attempt} answerValues={answers} lessonData={lessonData}
     saveState={saveState} message={message} isAssessing={isAssessing} isCompleting={isCompleting}
-    onSave={saveNow} onNavigate={navigateStep} onDraft={updateDraft}
+    onSave={saveAndExit} onNavigate={navigateStep} onDraft={updateDraft}
     onAnswer={(questionId, choiceId) => { const next = { ...answers, [questionId]: choiceId }; setAnswers(next); updateDraft("quizAnswers", next); }}
-    onAssess={submitAssessment} onComplete={completeLesson} onBack={() => { setCurrentStep(null); setMessage(""); }} /></>;
+    onAssess={submitAssessment} onComplete={completeLesson} onBack={() => void saveAndExit()} /></>;
 
-  if (attempt?.completedAt && artifact) return <><TopBar /><main className="lesson-wrap"><Completion artifact={artifact} attempt={attempt} reviewDue={reviewDue} onHome={() => setCurrentStep(null)} /></main><NavLinks mobile /></>;
+  if (showCompletion && attempt?.completedAt && artifact) return <><TopBar /><main className="lesson-wrap"><Completion artifact={artifact} attempt={attempt} reviewDue={reviewDue} onHome={() => { setShowCompletion(false); window.scrollTo({ top: 0, behavior: "smooth" }); }} /></main><NavLinks mobile /></>;
 
   return <><TopBar /><div className="app-layout" id="today">
     <NavLinks />
@@ -231,7 +248,7 @@ export default function LearningShell() {
         }} aria-label="Daily learning time"><option value={15}>15 minutes</option><option value={30}>30 minutes</option><option value={45}>45 minutes</option><option value={60}>60 minutes</option></select></label>
       </div>
       {message && <p className="inline-error" role="alert">{message}</p>}
-      <AIUnderstandingJourney onStartSearchPractice={() => void startLesson()} />
+      <AIUnderstandingJourney onStartSearchPractice={() => void startLesson()} searchPracticeActionLabel={practiceActionLabel} />
       <section className="explanation-helper progress-card" aria-labelledby="explanation-helper-title">
         <div className="progress-head"><div><div className="eyebrow">PROMPT PRACTICE · ABOUT 5 MIN</div><strong id="explanation-helper-title">Build a prompt to try with ChatGPT</strong></div><span>Beginner · Copy a prompt for ChatGPT</span></div>
         <p>Start with a topic you are curious about. Choose a style, add the topic, and copy this request into ChatGPT. The preview does not send anything or generate an AI answer in this app.</p>
@@ -251,7 +268,7 @@ export default function LearningShell() {
         <h2 id="today-title">From Google search to ChatGPT</h2>
         <p>See how a familiar question can become an explanation, a draft or a simple plan—and when to check the answer.</p>
         <div className="hero-meta"><span>◷ &nbsp;15 min</span><span className="meta-dot" /><span>Beginner friendly</span><span className="meta-dot" /><span>Everyday AI</span></div>
-        <div className="button-row"><button className="primary-button" onClick={() => void startLesson()}>Open full Google vs ChatGPT practice <span aria-hidden="true">→</span></button><span style={{ color: "var(--muted)", fontSize: 11 }}>{sessionUnits > 1 ? "One of " + sessionUnits + " planned units is ready in this preview." : "One complete learning unit"}</span></div>
+        <div className="button-row"><button className="primary-button" onClick={() => void startLesson()}>{practiceActionLabel} <span aria-hidden="true">→</span></button><span style={{ color: "var(--muted)", fontSize: 11 }}>{sessionUnits > 1 ? "One of " + sessionUnits + " planned units is ready in this preview." : "One complete learning unit"}</span></div>
         <p className="preview-notice">F01 is an optional full practice for the Google vs ChatGPT topic, using fictional examples. No ChatGPT account is needed, and nothing is sent to ChatGPT.</p>
       </div></section>
       <div className="section-heading" id="paths"><h2>Choose a learning path</h2><a href="#paths">Browse paths&nbsp; →</a></div>

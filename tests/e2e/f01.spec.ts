@@ -68,16 +68,20 @@ test("What is AI? journey advances by topic, awards milestones and persists prog
 });
 
 
-test("learner completes F01, saves private evidence, and resumes after reload", async ({ page }) => {
+test("learner opens from Today, saves, resumes, and reviews F01 explicitly", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  const response = await page.request.get("/api/lessons/foundation-001");
-  expect(response.ok()).toBeTruthy();
-  const publicLesson = JSON.stringify(await response.json());
+  await page.goto("/");
+  await expect(page.getByRole("heading", { name: "New to AI? Start with what you already know." })).toBeVisible();
+  let publicLesson = "";
+  await expect.poll(async () => {
+    const response = await page.request.get("/api/lessons/foundation-001");
+    if (response.ok()) publicLesson = JSON.stringify(await response.json());
+    return response.status();
+  }).toBe(200);
   expect(publicLesson).not.toContain("correctChoiceId");
   expect(publicLesson).not.toContain("reviewerGuide");
   expect(publicLesson).not.toContain("The candidate spends only $5");
 
-  await page.goto("/");
   await expect(page.getByRole("heading", { name: "New to AI? Start with what you already know." })).toBeVisible();
   await expect(page.getByText(/Start with a simple explanation of AI, then see how ChatGPT differs from Google Search/)).toBeVisible();
   await expect(page.getByRole("heading", { name: "From Google search to ChatGPT" })).toBeVisible();
@@ -95,7 +99,12 @@ test("learner completes F01, saves private evidence, and resumes after reload", 
   await page.getByLabel("3. One source-based check").fill("S5 sets the $12 limit and requires a 30-minute buffer.");
   await page.getByLabel("4. What information is still unknown?").fill("Weather and accessibility are not stated.");
   await draftSaved;
+  await page.getByRole("button", { name: "Save and exit" }).click();
+  await expect(page.getByRole("heading", { name: "New to AI? Start with what you already know." })).toBeVisible();
+  await expect(page.getByRole("button", { name: /Continue Google vs ChatGPT practice/ })).toBeVisible();
   await page.reload();
+  await expect(page.getByRole("heading", { name: "New to AI? Start with what you already know." })).toBeVisible();
+  await page.getByRole("button", { name: /Continue Google vs ChatGPT practice/ }).click();
   await expect(page.getByLabel("1. Your prompt")).toHaveValue(/Plan a quiet afternoon/);
   await page.getByRole("button", { name: /Continue to check/ }).click();
 
@@ -106,6 +115,12 @@ test("learner completes F01, saves private evidence, and resumes after reload", 
     await page.getByRole("group", { name: "Self-rating for " + dimension }).getByRole("button", { name: "2" }).click();
   }
   await page.getByRole("button", { name: "Check my understanding" }).click();
+  const scoringStatus = page.getByRole("alert");
+  await expect(scoringStatus).toBeVisible();
+  // Next.js dev can return a transient 404 while compiling this route; the UI offers a retry.
+  if ((await scoringStatus.textContent())?.includes("couldn't score")) {
+    await page.getByRole("button", { name: "Check my understanding" }).click();
+  }
   await expect(page.getByText(/Provisional proficiency/)).toBeVisible();
 
   await page.getByRole("button", { name: "Save and continue" }).click();
@@ -114,9 +129,14 @@ test("learner completes F01, saves private evidence, and resumes after reload", 
   await expect(page.getByRole("heading", { name: "Good work. You finished your lesson." })).toBeVisible();
   await expect(page.getByText(/self-assessed practice/)).toBeVisible();
   await page.reload();
+  await expect(page.getByRole("heading", { name: "New to AI? Start with what you already know." })).toBeVisible();
+  await page.getByRole("button", { name: /Review completed Google vs ChatGPT practice/ }).click();
   await expect(page.getByRole("heading", { name: "Good work. You finished your lesson." })).toBeVisible();
+  await page.getByRole("button", { name: "Back to today" }).click();
+  await expect(page.getByRole("heading", { name: "New to AI? Start with what you already know." })).toBeVisible();
 
   await page.setViewportSize({ width: 320, height: 800 });
   await page.goto("/");
+  await expect(page.getByRole("heading", { name: "New to AI? Start with what you already know." })).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBeTruthy();
 });

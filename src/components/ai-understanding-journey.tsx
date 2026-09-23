@@ -5,7 +5,7 @@ import { aiJourneyWaves, flattenedJourneyTopics, journeyTopicCount } from "@/mod
 
 const progressKey = "skillsprint-ai-understanding-journey-v2";
 
-export function AIUnderstandingJourney({ onStartSearchPractice }: { onStartSearchPractice: () => void }) {
+export function AIUnderstandingJourney({ onStartSearchPractice, searchPracticeActionLabel }: { onStartSearchPractice: () => void; searchPracticeActionLabel: string }) {
   const [completedCount, setCompletedCount] = useState(0);
   const [isReady, setIsReady] = useState(false);
   const [announcement, setAnnouncement] = useState("");
@@ -66,7 +66,7 @@ export function AIUnderstandingJourney({ onStartSearchPractice }: { onStartSearc
         </div>)}
       </div>
       <div className="journey-actions">
-        {current.id === "search-vs-chatgpt" && <button className="secondary-button" type="button" onClick={onStartSearchPractice}>Open full Google vs ChatGPT practice</button>}
+        {current.id === "search-vs-chatgpt" && <button className="secondary-button" type="button" onClick={onStartSearchPractice}>{searchPracticeActionLabel}</button>}
         <button className="primary-button understand-button" type="button" disabled={!isReady} onClick={advance}><span aria-hidden="true">✦</span> AI Understand <span aria-hidden="true">→</span></button>
       </div>
       <p className="journey-feedback" aria-live="polite">{announcement}</p>
