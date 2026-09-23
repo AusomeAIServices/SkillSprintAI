@@ -8,10 +8,11 @@ describe("F01 authored content", () => {
   });
 
   it("starts with a plain-language Google Search to ChatGPT comparison", () => {
-    expect(lesson.version).toBe("1.1.0");
+    expect(lesson.version).toBe("1.2.0");
     expect(lesson.steps[0].text).toMatch(/If you can type a question into Google/);
     expect(lesson.steps[0].text).toMatch(/follow-up in ordinary language/);
     expect(lesson.quiz[0].question).toMatch(/Google Search and ChatGPT/);
+    expect(lesson.steps[1].text).toMatch(/context \(the useful background and relevant earlier messages/);
   });
 
   it("marks the fixture fictional and leaves lesson publication for human review", () => {

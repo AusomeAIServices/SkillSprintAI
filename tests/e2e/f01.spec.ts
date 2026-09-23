@@ -16,6 +16,8 @@ test("learner completes F01, saves private evidence, and resumes after reload", 
   await page.getByRole("button", { name: /Start your first AI lesson/ }).click();
   await expect(page.getByRole("heading", { name: "Your first useful question for ChatGPT" })).toBeVisible();
   await page.getByRole("button", { name: /Save and continue/ }).click();
+  await expect(page.getByRole("heading", { name: "The four parts, in this example" })).toBeVisible();
+  await expect(page.getByText(/In a conversation, relevant earlier messages can also provide context/)).toBeVisible();
   await page.getByRole("button", { name: /Save and continue/ }).click();
   await expect(page.getByRole("heading", { name: "Try a familiar task with ChatGPT" })).toBeVisible();
 

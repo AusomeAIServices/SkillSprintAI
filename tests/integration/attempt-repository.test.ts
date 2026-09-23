@@ -23,7 +23,7 @@ describe("local learning repository", () => {
     expect(repo.getCurrentAttempt()).toBeNull();
 
     let attempt = repo.createCurrentAttempt();
-    expect(attempt.lessonVersion).toBe("1.1.0");
+    expect(attempt.lessonVersion).toBe("1.2.0");
     expect(repo.getAttempt(randomUUID())).toBeNull();
 
     const draftPatch = {

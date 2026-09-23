@@ -2,7 +2,7 @@
   "schemaVersion": "1.0",
   "id": "foundation-001",
   "curriculumCode": "F01",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "status": "draft",
   "title": "Your first useful question for ChatGPT",
   "pathwayId": "everyday-ai",
@@ -29,7 +29,7 @@
       "type": "instruction",
       "minutes": 3,
       "title": "Ask in everyday language",
-      "text": "You do not need special commands or technical terms. Say what you want help with, include useful details and limits, and describe the kind of answer that would help. For example, ask ChatGPT to explain a word simply, help draft a polite note, or arrange supplied choices into a schedule. If the first reply misses something, tell it what to change. ChatGPT can still make mistakes or miss recent information, so check facts that matter.",
+      "text": "A prompt is the request you give ChatGPT. Four useful parts are your goal (what you want done), context (the useful background and relevant earlier messages that help ChatGPT understand this request), constraints (limits or preferences to follow), and output (the shape you want the answer in). Context helps ChatGPT tailor its reply, but it does not prove that your facts are true or up to date. Share only details needed for the task. You can use everyday words and ask a follow-up if the reply misses something.",
       "weakExample": "Plan something fun.",
       "workedExample": "Plan a quiet afternoon for one adult between 1 pm and 4 pm using only the facts below. Start at the library. Keep spending at or below $12. Include travel time and a 30-minute buffer. Return a table with start time, end time, activity and cost. List any information that is missing rather than inventing it.",
       "privacyNote": "Use the fictional facts provided. A street address, identity number or private calendar is not needed for this exercise."

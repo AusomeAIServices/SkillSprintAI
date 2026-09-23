@@ -22,7 +22,7 @@ Eight lessons = 120 minutes of active learning, optionally spread across eight d
 
 | ID | Lesson | Evidence |
 |---|---|---|
-| F01 | Start from Google Search: learn what ChatGPT can explain, draft and organize; ask in everyday language; check important facts | A first ChatGPT-style request and a checked fictional plan |
+| F01 | Start from Google Search: learn what ChatGPT can explain, draft and organize; explain goal, context, constraints and output; check important facts | A first ChatGPT-style request and a checked fictional plan |
 | F02 | Know what AI can get wrong | Annotated answer separating supported facts and assumptions |
 | F03 | Learn something unfamiliar through examples | Plain-language explanation and own teach-back |
 | F04 | Write and revise for an audience | Before/after message with a reason for the revision |
