@@ -97,7 +97,7 @@ Empty state copy: “Your first saved result will appear here.” Quota state: �
 Test with at least five learners across beginner and workplace roles. Tasks: choose a 15-minute plan, resume after interruption, inspect source facts, submit a result, understand a wrong answer, find saved evidence, and locate deletion controls. Record task completion, hesitation, vocabulary confusion and accessibility defects. Prototype test success is usability evidence, not proof of learning efficacy.
 
 
-## AI Understanding Journey
+## What is AI? journey
 
 The home screen opens with one active topic and a visible path, so a first-time learner can start without knowing AI vocabulary. Show its wave, milestone, difficulty, simple explanation, and one small thing to try. The primary **AI Understand** control advances to the next authored topic. Keep the optional full lesson clearly separate from this lightweight guide. Use Easy, Hard, and Advanced labels as sequence cues rather than ability judgments; do not gate access on scores.
 

@@ -39,7 +39,7 @@ export function AIUnderstandingJourney({ onStartSearchPractice }: { onStartSearc
     <div className="journey-heading">
       <div>
         <div className="eyebrow">YOUR PERSONAL AI LEARNING PATH</div>
-        <h2 id="ai-journey-title">AI Understanding Journey</h2>
+        <h2 id="ai-journey-title">What is AI?</h2>
         <p>One topic at a time. Start easy, build skill, and advance when you understand.</p>
       </div>
       <div className="journey-rewards" aria-label="Journey rewards">
@@ -50,7 +50,7 @@ export function AIUnderstandingJourney({ onStartSearchPractice }: { onStartSearc
 
     <div className="journey-progress-wrap">
       <div className="journey-progress-label"><span>{isReady ? completedCount + " of " + journeyTopicCount + " topics" : "Loading your progress…"}</span><span>{progressPercent}%</span></div>
-      <div className="journey-progress" role="progressbar" aria-label="AI Understanding Journey progress" aria-valuemin={0} aria-valuemax={100} aria-valuenow={isReady ? progressPercent : 0}><span style={{ width: (isReady ? progressPercent : 0) + "%" }} /></div>
+      <div className="journey-progress" role="progressbar" aria-label="What is AI? learning progress" aria-valuemin={0} aria-valuemax={100} aria-valuenow={isReady ? progressPercent : 0}><span style={{ width: (isReady ? progressPercent : 0) + "%" }} /></div>
     </div>
 
     {current && currentMilestone ? <div className="journey-focus" aria-live="polite">

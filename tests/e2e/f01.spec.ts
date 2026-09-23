@@ -4,7 +4,7 @@ test("beginner prompt helper offers plain language, Tagalog and a student study 
   await page.goto("/");
   await expect(page.locator("#ai-journey-title")).toBeVisible();
   await expect(page.getByText("Build a prompt to try with ChatGPT", { exact: true })).toBeVisible();
-  await expect(page.locator(".ai-journey .journey-focus h3")).toHaveText("AI Understanding Journey");
+  await expect(page.locator(".ai-journey .journey-focus h3")).toHaveText("What is AI?");
   await page.getByLabel("What do you want to understand?").fill("fractions");
   await page.getByRole("button", { name: "Tagalog", exact: true }).click();
   await expect(page.getByText(/Explain it in natural, clear Tagalog/)).toBeVisible();
@@ -22,7 +22,7 @@ test("Journey is the second learning menu item on desktop and mobile", async ({ 
   const desktopNav = page.getByRole("navigation", { name: "Main navigation" });
   const desktopTargets = await desktopNav.locator(".nav-link").evaluateAll((links) => links.slice(0, 2).map((link) => link.getAttribute("href")));
   expect(desktopTargets).toEqual(["#today", "#ai-understanding-journey"]);
-  await desktopNav.getByRole("link", { name: "AI Understanding Journey" }).click();
+  await desktopNav.getByRole("link", { name: "What is AI?" }).click();
   await expect(page).toHaveURL(/#ai-understanding-journey$/);
   await expect(page.locator("#ai-understanding-journey")).toBeVisible();
 
@@ -32,15 +32,16 @@ test("Journey is the second learning menu item on desktop and mobile", async ({ 
   const mobileNav = page.getByRole("navigation", { name: "Mobile navigation" });
   const mobileTargets = await mobileNav.locator(".nav-link").evaluateAll((links) => links.slice(0, 2).map((link) => link.getAttribute("href")));
   expect(mobileTargets).toEqual(["#today", "#ai-understanding-journey"]);
-  await mobileNav.getByRole("link", { name: "Journey", exact: true }).click();
+  await mobileNav.getByRole("link", { name: "What is AI?", exact: true }).click();
   await expect(page).toHaveURL(/#ai-understanding-journey$/);
 });
 
-test("AI Understanding Journey advances by topic, awards milestones and persists progress", async ({ page }) => {
+test("What is AI? journey advances by topic, awards milestones and persists progress", async ({ page }) => {
   await page.goto("/");
   const journey = page.locator(".ai-journey");
   await expect(journey.locator("#ai-journey-title")).toBeVisible();
-  await expect(journey.locator(".journey-focus h3")).toHaveText("AI Understanding Journey");
+  await expect(journey.locator(".journey-focus h3")).toHaveText("What is AI?");
+  await expect(journey.getByText(/ChatGPT is one AI chat tool/)).toBeVisible();
   await expect(journey.locator(".difficulty-pill").first()).toHaveText("Easy");
   await expect(journey.getByText("0 of 27 topics")).toBeVisible();
 
@@ -78,7 +79,7 @@ test("learner completes F01, saves private evidence, and resumes after reload", 
 
   await page.goto("/");
   await expect(page.getByRole("heading", { name: "New to AI? Start with what you already know." })).toBeVisible();
-  await expect(page.getByText(/Follow your AI Understanding Journey: begin with the roadmap, then see how ChatGPT differs from Google Search/)).toBeVisible();
+  await expect(page.getByText(/Start with a simple explanation of AI, then see how ChatGPT differs from Google Search/)).toBeVisible();
   await expect(page.getByRole("heading", { name: "From Google search to ChatGPT" })).toBeVisible();
   await page.getByRole("button", { name: /Open full Google vs ChatGPT practice/ }).click();
   await expect(page.getByRole("heading", { name: "Your first useful question for ChatGPT" })).toBeVisible();

@@ -1,6 +1,6 @@
 # Implementation status
 
-Updated: 23 September 2026. Stage: M0 complete; M1 local F01 vertical slice plus static AI Understanding Journey preview.
+Updated: 23 September 2026. Stage: M0 complete; M1 local F01 vertical slice plus static What is AI? journey preview.
 
 ## Repository inspection
 
@@ -25,7 +25,7 @@ Updated: 23 September 2026. Stage: M0 complete; M1 local F01 vertical slice plus
 | Milestone | State | Evidence / next step |
 |---|---|---|
 | M0 contracts | Complete | Decisions and status documented; root instructions added |
-| M1 F01 local slice | Complete | Search-to-ChatGPT beginner onboarding, F01 lesson v1.3.0, three-wave, nine-milestone AI Understanding Journey preview (27 topics, Easy/Hard/Advanced at each milestone, local XP and badge progression), copy-ready prompt helper, optional full F01 practice, student study-guide preview, version-aware resume, local SQLite persistence, deterministic assessment, private evidence and review scheduling; build and automated checks pass |
+| M1 F01 local slice | Complete | Search-to-ChatGPT beginner onboarding, F01 lesson v1.3.0, three-wave, nine-milestone What is AI? journey preview (27 topics, Easy/Hard/Advanced at each milestone, local XP and badge progression), copy-ready prompt helper, optional full F01 practice, student study-guide preview, version-aware resume, local SQLite persistence, deterministic assessment, private evidence and review scheduling; build and automated checks pass |
 | M2 auth/PostgreSQL/20 lessons | Not started | Requires maintained auth choice, database setup, and 19 reviewed lessons |
 | M3 optional coach | Not started | Keep disabled; needs adapter, budget controls, evaluations and authorized config |
 | M4 pilot readiness | Not started | Requires remaining quality evidence and human/editorial/user inputs |
