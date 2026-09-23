@@ -13,6 +13,7 @@ The founder hypothesis is that people struggle less with access to AI explanatio
 | Audience | Starting problem | Desired outcome | Example evidence | Route |
 |---|---|---|---|---|
 | Individuals | AI feels unfamiliar or unreliable | Ask clearer daily questions and check answers | A checked travel-planning checklist | Everyday AI |
+| Students | Difficult topics feel hard to approach alone | Use AI for plain-language explanations, guided practice and self-explanation | A teach-back checked against course material | AI for Students (later) |
 | Information workers | Repetitive writing and information overload | Produce reusable work drafts and summaries | Meeting action table with source references | AI at Work |
 | Nontechnical professionals | General demos do not fit their field | Apply AI within professional judgment and confidentiality boundaries | Client brief with facts, assumptions, and review notes | Professional Practice |
 | Executives | Hype obscures investment decisions | Select use cases, measure value, assign accountability | Pilot charter and risk/value scorecard | Lead with AI |
@@ -25,7 +26,7 @@ Roles shape examples and prerequisites; they are not fixed ability labels. A fin
 
 Start with information workers in small service businesses and everyday users entering through ChatGPT in a Day. This gives the same lesson engine a personal and workplace test while keeping content production manageable. Recruit 20–30 adult pilot learners, including beginners and users with accessibility needs; this is discovery, not a statistically representative market sample.
 
-Offer all six pathways in the product vision. Only the first two are complete launch courses. Mark future pathways “planned” with a syllabus preview; never place a purchase or completion promise against unavailable content.
+Offer all seven pathways in the product vision. Only the first two are complete launch courses. Mark future pathways “planned” with a syllabus preview; never place a purchase or completion promise against unavailable content.
 
 Differentiation hypotheses to validate against free tutorials, general course libraries, and internal training:
 

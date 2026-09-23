@@ -21,7 +21,7 @@ Learners can complete lessons with static examples without an external paid acco
 | P1 | Optional AI hints grounded in the active lesson | Enabled only after evaluation gate; static hints always available |
 | P1 | Opt-in email reminders | After core loop; delivery integration can remain disabled in pilot |
 | P1 | Basic admin cohort export | After privacy and authorization tests |
-| Later | Four advanced complete pathways, paid subscriptions, team dashboard | Subsequent releases |
+| Later | Advanced pathways including AI for Students, paid subscriptions, team dashboard | Subsequent releases; student study path must follow teacher rules and protect academic integrity |
 | Later | Live coding sandboxes, agent labs, SSO, LMS, marketplace, mobile-native app | Separate scoped projects |
 
 ## Core stories and acceptance criteria
@@ -40,6 +40,8 @@ Learners can complete lessons with static examples without an external paid acco
 | PR-10 | As an editor I want trustworthy lessons | Draft cannot publish without source date, rubric, answers, accessibility checks and content reviewer approval |
 | PR-11 | As a learner I want manageable pacing | Pause timer, extend time, save and leave; no score depends on speed; extra study is optional |
 | PR-12 | As an operator I want bounded cost | Reserve budget before provider call; duplicates reuse a run; exhausted quota makes zero new paid calls |
+| PR-13 | As a beginner I want an explanation in language I understand | Provide copy-ready requests for everyday language, a familiar analogy and Tagalog; clearly disclose that the preview copies a prompt and does not call an AI service |
+| PR-14 | As a student I want AI to help me understand a hard topic | Teach step-by-step explanation, one-question practice, learner teach-back, trusted-source verification, school-policy compliance and privacy; do not position AI as a homework answer service |
 
 ## Planning and mastery rules
 
@@ -66,3 +68,5 @@ Activation = first practice and check completed within 24 hours of onboarding. W
 Proposed pilot targets: WCAG 2.2 AA design and test target; p75 Largest Contentful Paint under 2.5 seconds on the agreed test device/network; non-AI API p95 under 500 ms at 50 concurrent simulated learners; coach feedback p95 under 10 seconds or an explicit fallback; 99.5% monthly service availability target once public. These are acceptance targets, not measurements or compliance claims.
 
 Local demo mode must run without provider credentials and use synthetic accounts and fixtures. Hosted environments must disable demo authentication. Offline caching may serve public lesson content; private artifacts require explicit persistence controls and are not cached by a service worker in MVP.
+
+Student pathway is roadmap content only; the current preview has no live AI tutor. Initial MVP remains adult-only. Any future enrollment of minors requires a separate product, privacy, consent, safeguarding and school-policy review.

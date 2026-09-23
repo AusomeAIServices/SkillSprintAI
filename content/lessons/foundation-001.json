@@ -2,7 +2,7 @@
   "schemaVersion": "1.0",
   "id": "foundation-001",
   "curriculumCode": "F01",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "status": "draft",
   "title": "Your first useful question for ChatGPT",
   "pathwayId": "everyday-ai",
@@ -29,9 +29,9 @@
       "type": "instruction",
       "minutes": 3,
       "title": "Ask in everyday language",
-      "text": "A prompt is the request you give ChatGPT. Four useful parts are your goal (what you want done), context (the useful background and relevant earlier messages that help ChatGPT understand this request), constraints (limits or preferences to follow), and output (the shape you want the answer in). Context helps ChatGPT tailor its reply, but it does not prove that your facts are true or up to date. Share only details needed for the task. You can use everyday words and ask a follow-up if the reply misses something.",
+      "text": "A prompt is the request you give ChatGPT. Four useful parts are your goal (what you want done), context (the useful background and relevant earlier messages that help ChatGPT understand this request), constraints (limits or preferences to follow), and output (the shape you want the answer in). Context helps ChatGPT tailor its reply, but it does not prove that your facts are true or up to date. Share only details needed for the task. You can ask for simple everyday words, a familiar analogy, or an explanation in Tagalog (Filipino). Ask for a follow-up if the reply misses something.",
       "weakExample": "Plan something fun.",
-      "workedExample": "Plan a quiet afternoon for one adult between 1 pm and 4 pm using only the facts below. Start at the library. Keep spending at or below $12. Include travel time and a 30-minute buffer. Return a table with start time, end time, activity and cost. List any information that is missing rather than inventing it.",
+      "workedExample": "Plan a quiet afternoon for one adult between 1 pm and 4 pm using only the facts below. Start at the library. Keep spending at or below $12. Include travel time and a 30-minute buffer. Return a table with start time, end time, activity and cost. List any information that is missing rather than inventing it. Use simple everyday words.",
       "privacyNote": "Use the fictional facts provided. A street address, identity number or private calendar is not needed for this exercise."
     },
     {

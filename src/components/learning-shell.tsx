@@ -12,6 +12,7 @@ const paths = [
   { icon: "▤", color: "green", title: "AI at Work", detail: "Writing, summaries and repeatable workflows", state: "Coming soon" },
   { icon: "◎", color: "amber", title: "Lead with AI", detail: "Choose and guide responsible AI projects", state: "Planned" },
   { icon: "⌘", color: "blue", title: "Build with Codex", detail: "Turn ideas into tested code changes", state: "Planned" },
+  { icon: "✎", color: "amber", title: "AI for Students", detail: "Understand hard topics without letting AI do the learning for you", state: "Guide preview", href: "#study-guide" },
 ];
 
 function Icon({ children }: { children: ReactNode }) { return <span className="nav-icon" aria-hidden="true">{children}</span>; }
@@ -35,6 +36,9 @@ export default function LearningShell() {
   const [lessonData, setLessonData] = useState<LearnerLesson | null>(null);
   const [artifact, setArtifact] = useState<PrivateArtifact | null>(null);
   const [duration, setDuration] = useState(15);
+  const [studyTopic, setStudyTopic] = useState("");
+  const [explanationStyle, setExplanationStyle] = useState<"simple" | "eli5" | "tagalog">("simple");
+  const [copyState, setCopyState] = useState("");
   const [saveState, setSaveState] = useState<SaveState>("saved");
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(true);
@@ -189,6 +193,21 @@ export default function LearningShell() {
   }, [attempt, flushPendingDraft, isCompleting, refreshProgress, request, setLatestAttempt]);
 
   const sessionUnits = duration / 15;
+  const styleInstructions = {
+    simple: "Use simple, everyday words and define any difficult terms.",
+    eli5: "Explain it like I’m 5, using a familiar analogy, while keeping the facts accurate.",
+    tagalog: "Explain it in natural, clear Tagalog (Filipino); define important English terms when helpful.",
+  } as const;
+  const explanationPrompt = "Help me understand " + (studyTopic.trim() || "[topic or question]") + ". " + styleInstructions[explanationStyle] + " Start with one familiar example, then break the idea into three small steps. Ask me one question at a time and wait for my answer. If I get something wrong, explain the gap gently instead of just giving me the answer. Tell me what I should verify in my class notes, textbook, or another trusted source, and say when you are unsure.";
+  const copyExplanationPrompt = async () => {
+    try {
+      if (!navigator.clipboard?.writeText) throw new Error("Clipboard unavailable");
+      await navigator.clipboard.writeText(explanationPrompt);
+      setCopyState("Prompt copied. Paste it into ChatGPT when you’re ready.");
+    } catch {
+      setCopyState("Copy is unavailable here. Select and copy the prompt above.");
+    }
+  };
   const progressPercent = attempt?.completedAt ? 100 : attempt ? Math.round((attempt.visitedSteps.length / 5) * 100) : 0;
   if (isLoading && !attempt) return <><TopBar /><main className="app-layout"><div className="loading-card" role="status">Opening your learning space…</div></main></>;
 
@@ -218,11 +237,39 @@ export default function LearningShell() {
         <div className="button-row"><button className="primary-button" onClick={() => void startLesson()}>Start your first AI lesson <span aria-hidden="true">→</span></button><span style={{ color: "var(--muted)", fontSize: 11 }}>{sessionUnits > 1 ? "One of " + sessionUnits + " planned units is ready in this preview." : "One complete learning unit"}</span></div>
         <p className="preview-notice">F01 is a draft preview with fictional practice. No ChatGPT account is needed, and nothing is sent to ChatGPT.</p>
       </div></section>
+      <section className="explanation-helper progress-card" aria-labelledby="explanation-helper-title">
+        <div className="progress-head"><strong id="explanation-helper-title">Ask AI to explain it your way</strong><span>Copy a prompt for ChatGPT</span></div>
+        <p>Choose a style, add a topic, and copy this request into ChatGPT. The preview does not send anything or generate an AI answer in this app.</p>
+        <label className="field"><span>What do you want to understand?</span><input value={studyTopic} onChange={(event) => setStudyTopic(event.target.value)} maxLength={180} placeholder="For example: how inflation works" /></label>
+        <div className="style-choices" role="group" aria-label="Explanation style">
+          <button type="button" className={explanationStyle === "simple" ? "style-choice selected" : "style-choice"} aria-pressed={explanationStyle === "simple"} onClick={() => { setExplanationStyle("simple"); setCopyState(""); }}>Simple words</button>
+          <button type="button" className={explanationStyle === "eli5" ? "style-choice selected" : "style-choice"} aria-pressed={explanationStyle === "eli5"} onClick={() => { setExplanationStyle("eli5"); setCopyState(""); }}>Explain like I’m 5</button>
+          <button type="button" className={explanationStyle === "tagalog" ? "style-choice selected" : "style-choice"} aria-pressed={explanationStyle === "tagalog"} onClick={() => { setExplanationStyle("tagalog"); setCopyState(""); }}>Tagalog</button>
+        </div>
+        <blockquote className="prompt-preview">{explanationPrompt}</blockquote>
+        <div className="button-row"><button className="secondary-button" type="button" onClick={() => void copyExplanationPrompt()}>Copy prompt</button><span aria-live="polite" className="copy-status">{copyState}</span></div>
+        <p className="preview-notice">Avoid sharing passwords, private records or personal details. Check important facts with a trusted source.</p>
+      </section>
       <div className="section-heading" id="paths"><h2>Choose a learning path</h2><a href="#paths">Browse paths&nbsp; →</a></div>
       <section className="path-grid" aria-label="Learning paths">{paths.map((path) => <article className="path-card" key={path.title}>
         <div className="path-top"><span className={"path-icon " + path.color}>{path.icon}</span><span className="planned-chip">{path.state}</span></div>
         <h3 className="path-title">{path.title}</h3><p className="path-description">{path.detail}</p>
+        {"href" in path && <a className="path-link" href={path.href}>Open the study guide <span aria-hidden="true">→</span></a>}
       </article>)}</section>
+      <section className="study-guide progress-card" id="study-guide" aria-labelledby="study-guide-title">
+        <div className="progress-head"><strong id="study-guide-title">AI for Students: learn the idea, not just the answer</strong><span>Study guide preview · 15-minute practice</span></div>
+        <p>AI can be a patient tutor for a confusing topic. Ask it to build your understanding step by step, then practise explaining the idea yourself.</p>
+        <div className="study-guide-grid">
+          <ol className="study-steps">
+            <li><strong>Name the topic and your level.</strong> “I’m studying [topic] in [class or course].”</li>
+            <li><strong>Ask for a simple explanation.</strong> Request everyday words, a familiar example, or Tagalog if that helps you learn.</li>
+            <li><strong>Go one step at a time.</strong> Ask AI to define key terms and explain how each step connects.</li>
+            <li><strong>Practise retrieval.</strong> Ask for one question, answer it yourself, then ask AI to explain any gap in your reasoning.</li>
+            <li><strong>Check and teach it back.</strong> Compare important claims with your course notes or textbook; then explain the idea in your own words.</li>
+          </ol>
+          <div className="study-example"><strong>Example prompt for a difficult topic</strong><blockquote>Help me understand photosynthesis for an introductory biology class. Explain it in simple words with a familiar analogy, define the key terms, and break it into three steps. Ask me one question at a time and wait for my answer. Help me find gaps in my reasoning; don’t write my homework for me. Tell me what to verify in my textbook.</blockquote><p>Use AI within your teacher’s rules. Don’t paste student records, private class material or personal information. AI can make mistakes, so check facts and citations against trusted course sources.</p></div>
+        </div>
+      </section>
       <section className="progress-card" id="progress" aria-label="Your weekly progress"><div className="progress-head"><strong>This week</strong><span>{attempt?.completedAt ? "1 learning unit completed" : attempt ? "Lesson in progress" : "Your first practice starts here"}</span></div>
         <div className="progress-track" role="progressbar" aria-label="Current lesson progress" aria-valuemin={0} aria-valuemax={100} aria-valuenow={progressPercent}><div className="progress-fill" style={{ width: progressPercent + "%" }} /></div>
         <div className="review-row"><span className="review-icon" aria-hidden="true">◷</span><span>{reviewDue ? "A short review is scheduled for " + new Date(reviewDue).toLocaleDateString() + "." : "A short review will appear after your first lesson."}</span></div>

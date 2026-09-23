@@ -33,18 +33,25 @@ Eight lessons = 120 minutes of active learning, optionally spread across eight d
 
 Recommended one-day rhythm: F01–F02 morning; F03–F04 late morning; F05–F06 afternoon; F07–F08 evening. F01 includes a basic privacy reminder and an accuracy check; these protections are not deferred until F07.
 
-## Six pathways
+## Seven pathways
 
 Durations below include each pathway's own units. Prerequisites are additional unless demonstrated through placement. A learner without prior experience follows Foundation before specialization.
 
 | Path | Units / active time | Prerequisite | Graduation evidence | Release |
 |---|---|---|---|---|
 | Everyday AI | 8 / 2 hours | None | Checked personal task | MVP |
+| AI for Students | 8 / 2 hours | None | Student teach-back checked against course material | Later |
 | AI at Work | 12 / 3 hours | Foundation or diagnostic | Reusable workplace workflow | MVP |
 | Professional Practice | 16 / 4 hours | Foundation | Domain brief with review procedure | Later |
 | Lead with AI | 12 / 3 hours | Foundation or executive diagnostic | Pilot investment and governance memo | Later |
 | Build with Codex | 24 / 6 hours | Basic Git, files, terminal and programming | Tested app change and reviewed PR | Later |
 | Build AI Systems | 32 / 8 hours | Programming, HTTP/JSON, secrets and basic tests | Evaluated agent application | Later |
+
+### AI for Students: eight units
+
+S01 ask for a level-appropriate explanation in everyday words; S02 unpack a hard concept with an analogy and vocabulary map; S03 break a multi-step topic into small explanations; S04 practise with one-question-at-a-time tutoring; S05 diagnose misconceptions by explaining the learner's reasoning; S06 study from teacher-approved notes and verify claims against course sources; S07 apply academic-integrity, attribution and privacy boundaries; S08 teach the topic back in the learner's own words without AI.
+
+Every lesson uses a 15-minute recall → explanation → learner practice → check → reflection cycle. AI is a study aid, not a substitute for the learner's work, teacher instruction, or required attribution. The first release target remains adults; serving minors requires a separate age-appropriate safety, privacy, consent and school-policy review before enrollment is enabled.
 
 ### AI at Work: twelve units
 

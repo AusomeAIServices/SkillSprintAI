@@ -25,15 +25,15 @@ Updated: 23 September 2026. Stage: M0 complete; M1 local F01 vertical slice comp
 | Milestone | State | Evidence / next step |
 |---|---|---|
 | M0 contracts | Complete | Decisions and status documented; root instructions added |
-| M1 F01 local slice | Complete | Search-to-ChatGPT beginner onboarding, F01 lesson v1.2.0, version-aware resume, local SQLite persistence, deterministic assessment, private evidence and review scheduling; build and automated checks pass |
+| M1 F01 local slice | Complete | Search-to-ChatGPT beginner onboarding, F01 lesson v1.3.0, beginner prompt helper, student study-guide preview, version-aware resume, local SQLite persistence, deterministic assessment, private evidence and review scheduling; build and automated checks pass |
 | M2 auth/PostgreSQL/20 lessons | Not started | Requires maintained auth choice, database setup, and 19 reviewed lessons |
 | M3 optional coach | Not started | Keep disabled; needs adapter, budget controls, evaluations and authorized config |
 | M4 pilot readiness | Not started | Requires remaining quality evidence and human/editorial/user inputs |
 
 ## Validation record
 
-- `npm run typecheck`, `npm run lint`, `npm run test` (9 tests across 4 files), `npm run content:validate`, and `npm run build` pass.
-- `npm run test:e2e` passes the Chromium F01 journey, including answer-key privacy, navigation, draft persistence after reload, deterministic scoring, completion, private evidence and 320 px layout.
+- `npm run typecheck`, `npm run lint`, `npm run test` (10 tests across 4 files), `npm run content:validate`, and `npm run build` pass.
+- `npm run test:e2e` passes two Chromium journeys: prompt helper and student guide, plus the F01 journey including answer-key privacy, navigation, draft persistence after reload, deterministic scoring, completion, private evidence and 320 px layout.
 - Desktop and mobile layouts were inspected in the in-app browser; no horizontal overflow was found at the inspected mobile viewport.
 - The authored lesson passes schema, timing, answer-key and rubric checks; it remains a draft pending human editorial review.
 - The environment has Node.js v24.18.0 and npm 11.16.0. Docker daemon is unavailable.
@@ -42,5 +42,5 @@ Updated: 23 September 2026. Stage: M0 complete; M1 local F01 vertical slice comp
 
 - Local demo requires Node.js 24.15+ for the built-in SQLite module; SQLite remains a development-only adapter.
 - SQLite in Node 24 is experimental and only suitable as an isolated local M1 adapter; production should use the PostgreSQL path in the architecture.
-- The authored lesson is explicitly pending human editorial review; it cannot be represented as published pilot content.
+- The authored lesson is explicitly pending human editorial review; it cannot be represented as published pilot content. Student pathway is a roadmap preview, not an enrolled or AI-powered course.
 - The workspace source is published at https://github.com/AusomeAIServices/SkillSprintAI on branch main. No cloud resources or paid subscriptions have been created.

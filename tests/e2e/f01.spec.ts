@@ -1,5 +1,19 @@
 import { expect, test } from "@playwright/test";
 
+test("beginner prompt helper offers plain language, Tagalog and a student study guide", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.getByText("Ask AI to explain it your way", { exact: true })).toBeVisible();
+  await page.getByLabel("What do you want to understand?").fill("fractions");
+  await page.getByRole("button", { name: "Tagalog", exact: true }).click();
+  await expect(page.getByText(/Explain it in natural, clear Tagalog/)).toBeVisible();
+  await page.getByRole("button", { name: "Explain like I’m 5" }).click();
+  await expect(page.getByText(/Explain it like I’m 5, using a familiar analogy/)).toBeVisible();
+  await page.getByRole("button", { name: "Copy prompt" }).click();
+  await expect(page.getByText(/Prompt copied|Copy is unavailable here/)).toBeVisible();
+  await expect(page.getByText("AI for Students: learn the idea, not just the answer", { exact: true })).toBeVisible();
+  await expect(page.getByText(/Compare important claims with your course notes or textbook/)).toBeVisible();
+});
+
 test("learner completes F01, saves private evidence, and resumes after reload", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   const response = await page.request.get("/api/lessons/foundation-001");
