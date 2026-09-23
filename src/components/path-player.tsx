@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import type { LearningPath, PathUnit } from "@/modules/learning/pathways";
+import { workedJourneys } from "@/modules/learning/worked-journeys";
 
 type UnitWork = { practice: string; reflection: string; checked: boolean; practisedAt?: string };
 type WorkMap = Record<string, UnitWork>;
@@ -97,12 +98,18 @@ export function PathPlayer({ path }: { path: LearningPath }) {
   }
   function select(unit: PathUnit) { setSelectedId(unit.id); setNotice(""); window.scrollTo({ top: 0, behavior: "smooth" }); }
   const groups = Array.from(new Set(path.units.map((unit) => unit.module)));
+  const example = workedJourneys[path.slug];
 
   return <main className="course-shell">
     <div className="course-breadcrumb"><Link href="/">Today</Link><span> / </span><span>{path.title}</span></div>
     <header className="course-header"><div><div className="eyebrow">SELF-GUIDED COURSE PREVIEW · {path.units.length} × 15 MIN</div><h1>{path.title}</h1><p>{path.description}</p></div><span className="course-count">{ready ? practised : "–"}/{path.units.length}<small>units practised</small></span></header>
     <div className="course-summary"><span><strong>For</strong> {path.audience}</span><span><strong>Before starting</strong> {path.prerequisite}</span><span><strong>Goal</strong> {path.outcome}</span></div>
     <p className="course-disclosure">These are self-guided draft practice units. Progress is stored only in this browser. A practised unit is not a scored completion, proficiency claim, or credential. Use fictional information; no prompt or draft is sent to an AI service.</p>
+    <details className="worked-journey" open>
+      <summary><span><span className="eyebrow">FOLLOW A COMPLETE EXAMPLE</span><strong>Sample journey: {example.title}</strong><small>{example.unitId} · Reference answers for all five steps</small></span><span className="worked-toggle" aria-hidden="true">⌄</span></summary>
+      <p className="worked-intro">Read how a learner could work through one unit in this path. These are grounded example answers, not the only acceptable answers or keys for a scored quiz. Try your own result in the unit below.</p>
+      <ol className="worked-steps">{example.steps.map((step, index) => <li key={step.stage}><span className="worked-index">{index + 1}</span><div><span className="course-time">{step.stage.toUpperCase()}</span><h3>{step.question}</h3><p><strong>Reference answer:</strong> {step.answer}</p></div></li>)}</ol>
+    </details>
     <div className="course-layout"><aside className="course-outline" aria-label="Course units">{groups.map((group) => <section key={group}><h2>{group}</h2>{path.units.filter((unit) => unit.module === group).map((unit) => <button type="button" key={unit.id} className={"course-unit " + (selected.id === unit.id ? "is-selected " : "") + (work[unit.id]?.practisedAt ? "is-practised" : "")} onClick={() => select(unit)} aria-current={selected.id === unit.id ? "step" : undefined}><span>{unit.id}</span><strong>{unit.title}</strong><small>{work[unit.id]?.practisedAt ? "✓ Practised" : "15 min"}</small></button>)}</section>)}</aside>
     <article className="course-lesson"><div className="course-lesson-head"><span className="pill">{selected.id} · 15 MIN</span><span className="pill neutral">{selected.module}</span><h2>{selected.title}</h2><p>Make one small, reviewable result today.</p></div>
       <div className="course-step"><span className="course-time">0–1 MIN · RECALL</span><h3>Start with what you know</h3><p>What would you do to solve this task without AI? Name one part that needs your own judgment.</p></div>

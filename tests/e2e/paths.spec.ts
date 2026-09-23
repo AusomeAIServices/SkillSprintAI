@@ -7,6 +7,9 @@ test("all seven learning paths open and a practice draft persists", async ({ pag
   for (const slug of ["everyday-ai", "ai-for-students", "ai-at-work", "professional-practice", "lead-with-ai", "build-with-codex", "build-ai-systems"]) {
     await page.goto(`/paths/${slug}`);
     await expect(page.locator(".course-header h1")).toBeVisible();
+    await expect(page.locator(".worked-journey")).toBeVisible();
+    await expect(page.locator(".worked-steps li")).toHaveCount(5);
+    await expect(page.locator(".worked-steps p").first()).toContainText("Reference answer:");
     await expect(page.locator(".course-unit")).toHaveCount({ "everyday-ai": 8, "ai-for-students": 8, "ai-at-work": 12, "professional-practice": 16, "lead-with-ai": 12, "build-with-codex": 24, "build-ai-systems": 32 }[slug]);
   }
   await page.goto("/paths/ai-for-students");
@@ -20,4 +23,7 @@ test("all seven learning paths open and a practice draft persists", async ({ pag
   await expect(page.getByText("1/8")).toBeVisible();
   await page.getByRole("button", { name: /Next: S02/ }).click();
   await expect(page.locator(".course-lesson-head h2")).toHaveText("Unpack a hard concept");
+  await page.setViewportSize({ width: 390, height: 844 });
+  await expect(page.locator(".worked-journey")).toBeVisible();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
 });

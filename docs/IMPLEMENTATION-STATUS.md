@@ -32,7 +32,7 @@ Updated: 23 September 2026. Stage: M0 complete; M1 local F01 vertical slice plus
 
 ## Validation record
 
-- `npm run typecheck`, `npm run lint`, `npm run test` (11 tests across 5 files), `npm run content:validate`, and `npm run build` pass.
+- `npm run typecheck`, `npm run lint`, `npm run test` (12 tests across 5 files), `npm run content:validate`, and `npm run build` pass.
 - `npm run test:e2e` passes five Chromium tests covering all seven path pages and: prompt helper and student guide, plus the F01 journey including answer-key privacy, navigation, draft persistence after reload, deterministic scoring, completion, private evidence and 320 px layout.
 - Desktop and mobile layouts were inspected in the in-app browser; no horizontal overflow was found at the inspected mobile viewport.
 - The authored lesson passes schema, timing, answer-key and rubric checks; it remains a draft pending human editorial review.
@@ -50,3 +50,8 @@ Updated: 23 September 2026. Stage: M0 complete; M1 local F01 vertical slice plus
 - Added all seven curriculum paths (8 + 8 + 12 + 16 + 12 + 24 + 32 = 112 units) to the main menu. Each path opens a course page with ordered modules and unique unit practice tasks.
 - Each unit shows a 15-minute recall → learn → apply → check → reflect scaffold, tailored module guidance, synthetic practice material, local draft persistence, and a self-reported “practised” indicator. No model call, automatic scoring, or credential is implied.
 - Added catalog validation and Chromium navigation/persistence coverage. Human editorial review, supplied lesson-specific source fixtures, deterministic assessments, authenticated persistence, and live advanced labs are still needed before these paths can be called complete published courses.
+
+## Worked journey guidance
+
+- Each of the seven path pages now includes a path-specific five-step sample journey, with a question and grounded reference answer for Recall, Learn, Apply, Check, and Reflect. These are visible teaching examples, not scored quiz keys or proof of proficiency.
+- Browser coverage verifies five answers on every path and preserved draft persistence; catalog tests verify the worked example unit IDs and ordered stages.

@@ -108,6 +108,20 @@ Use “Codex Swarm” as a course subtitle for coordinated specialist work, not 
 
 The Agents SDK supports application-owned agent workflows. The Agents API is a separately documented managed harness option. Teach the distinction and select by control, durability, cost and deployment needs, rather than treating either as automatically required. [SDK](https://developers.openai.com/api/docs/guides/agents/sdk), [managed harness](https://developers.openai.com/api/docs/guides/agents-api/overview).
 
+## Worked journey examples in the local preview
+
+Each of the seven self-guided path pages includes one complete five-step example with a reference answer for Recall, Learn, Apply, Check and Reflect. The examples use fictional material already supplied on the page, show how to mark unsupported claims, and remain visible while a learner works through the path. They are instructional examples, not answer keys for a scored assessment; multiple well-supported learner answers may be valid.
+
+| Path | Example unit | Reference task |
+|---|---|---|
+| Everyday AI | F01 | Plan an indoor Saturday activity and verify unknown details |
+| AI for Students | S01 | Explain photosynthesis from approved notes in the learner's own words |
+| AI at Work | W02 | Summarize a project update without turning a proposed deadline into a decision |
+| Professional Practice | P03 | Separate conflicting dispatch records from inference |
+| Lead with AI | L09 | Write a bounded pilot charter without inventing savings |
+| Build with Codex | C06 | Review a failing test and a change outside the requested scope |
+| Build AI Systems | A19 | Refuse a retrieved instruction that tries to bypass tool approval |
+
 ## Shared artifact rubric
 
 Each dimension is 0, 1, or 2: 0 = missing or materially wrong; 1 = partial; 2 = meets the criterion.
