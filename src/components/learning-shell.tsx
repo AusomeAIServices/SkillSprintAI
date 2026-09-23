@@ -223,7 +223,7 @@ export default function LearningShell() {
   return <><TopBar /><div className="app-layout" id="today">
     <NavLinks />
     <main className="main-column">
-      <div className="welcome-row"><div><div className="eyebrow">YOUR DAILY PRACTICE</div><h1>New to AI? Start with what you already know.</h1><p>Start by asking AI to explain one topic in a way that works for you. Then learn how ChatGPT differs from Google Search. No AI experience needed.</p></div>
+      <div className="welcome-row"><div><div className="eyebrow">YOUR DAILY PRACTICE</div><h1>New to AI? Start with what you already know.</h1><p>Follow your AI Understanding Journey: begin with the roadmap, then see how ChatGPT differs from Google Search. No AI experience needed.</p></div>
         <label className="field" style={{ maxWidth: 138 }}><span className="sr-only">Choose daily learning time</span><select className="duration-select" value={duration} onChange={(event) => {
           const next = Number(event.target.value); setDuration(next);
           try { localStorage.setItem("skillsprint-daily-minutes", String(next)); } catch { /* optional preference */ }

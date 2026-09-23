@@ -2,9 +2,9 @@ import { expect, test } from "@playwright/test";
 
 test("beginner prompt helper offers plain language, Tagalog and a student study guide", async ({ page }) => {
   await page.goto("/");
-  await expect(page.getByRole("heading", { name: "AI Understanding Journey" })).toBeVisible();
+  await expect(page.locator("#ai-journey-title")).toBeVisible();
   await expect(page.getByText("Build a prompt to try with ChatGPT", { exact: true })).toBeVisible();
-  await expect(page.locator(".ai-journey .journey-focus h3")).toHaveText("Ask AI to explain it your way");
+  await expect(page.locator(".ai-journey .journey-focus h3")).toHaveText("AI Understanding Journey");
   await page.getByLabel("What do you want to understand?").fill("fractions");
   await page.getByRole("button", { name: "Tagalog", exact: true }).click();
   await expect(page.getByText(/Explain it in natural, clear Tagalog/)).toBeVisible();
@@ -19,8 +19,8 @@ test("beginner prompt helper offers plain language, Tagalog and a student study 
 test("AI Understanding Journey advances by topic, awards milestones and persists progress", async ({ page }) => {
   await page.goto("/");
   const journey = page.locator(".ai-journey");
-  await expect(journey.getByRole("heading", { name: "AI Understanding Journey" })).toBeVisible();
-  await expect(journey.locator(".journey-focus h3")).toHaveText("Ask AI to explain it your way");
+  await expect(journey.locator("#ai-journey-title")).toBeVisible();
+  await expect(journey.locator(".journey-focus h3")).toHaveText("AI Understanding Journey");
   await expect(journey.locator(".difficulty-pill").first()).toHaveText("Easy");
   await expect(journey.getByText("0 of 27 topics")).toBeVisible();
 
@@ -58,7 +58,7 @@ test("learner completes F01, saves private evidence, and resumes after reload", 
 
   await page.goto("/");
   await expect(page.getByRole("heading", { name: "New to AI? Start with what you already know." })).toBeVisible();
-  await expect(page.getByText(/Start by asking AI to explain one topic in a way that works for you/)).toBeVisible();
+  await expect(page.getByText(/Follow your AI Understanding Journey: begin with the roadmap, then see how ChatGPT differs from Google Search/)).toBeVisible();
   await expect(page.getByRole("heading", { name: "From Google search to ChatGPT" })).toBeVisible();
   await page.getByRole("button", { name: /Open full Google vs ChatGPT practice/ }).click();
   await expect(page.getByRole("heading", { name: "Your first useful question for ChatGPT" })).toBeVisible();

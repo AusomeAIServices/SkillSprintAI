@@ -33,7 +33,7 @@ export const aiJourneyWaves: [JourneyWave, JourneyWave, JourneyWave] = [
         title: "Start a useful conversation",
         summary: "Move from a question to a helpful, checkable response.",
         topics: [
-          { id: "explain-my-way", difficulty: "Easy", title: "Ask AI to explain it your way", explanation: "ChatGPT can explain a topic in simple everyday words. You can also ask for Tagalog or a familiar example.", practice: "Pick one topic you are curious about. Ask: “Explain [topic] in simple words and give me one familiar example.”" },
+          { id: "journey-orientation", difficulty: "Easy", title: "AI Understanding Journey", explanation: "Start with the questions you already know how to ask. In short daily steps, you will learn what ChatGPT can help with, how to ask clearly, and how to check its answers.", practice: "Think of one everyday question you would usually type into Google. Keep it in mind as you move to the next topic." },
           { id: "search-vs-chatgpt", difficulty: "Hard", title: "From Google search to ChatGPT", explanation: "Google Search finds pages for you to open. ChatGPT replies in a conversation and can explain or organize details. It can still make mistakes or miss recent facts.", practice: "Ask ChatGPT to explain a topic, then use Google Search to check one important or current fact." },
           { id: "combine-search-ai", difficulty: "Advanced", title: "Use search and ChatGPT together", explanation: "Use search to find current, trustworthy sources. Give relevant source text to ChatGPT to compare or explain, then check the result against those sources.", practice: "Find one reliable page, ask ChatGPT to summarize only the text you provide, and verify one claim." },
         ],
@@ -53,7 +53,7 @@ export const aiJourneyWaves: [JourneyWave, JourneyWave, JourneyWave] = [
         title: "Learn with AI",
         summary: "Use explanations, examples, and questions to build your own understanding.",
         topics: [
-          { id: "simple-explanation", difficulty: "Easy", title: "Ask for simple words", explanation: "You do not need special AI vocabulary. Ask for a short explanation and ask what an unfamiliar word means.", practice: "Ask AI: “Explain [topic] simply. Define any difficult words.”" },
+          { id: "explain-my-way", difficulty: "Easy", title: "Ask AI to explain it your way", explanation: "ChatGPT can explain a topic in simple everyday words. You can also ask for Tagalog or a familiar example.", practice: "Pick one topic you are curious about. Ask: “Explain [topic] in simple words and give me one familiar example.”" },
           { id: "one-question-at-a-time", difficulty: "Hard", title: "Practise one question at a time", explanation: "AI can act like a practice partner: ask one question, wait for your answer, and explain where your reasoning needs work.", practice: "Ask for one question about your topic. Answer it yourself before asking for feedback." },
           { id: "teach-it-back", difficulty: "Advanced", title: "Teach the idea back", explanation: "Explaining an idea in your own words helps reveal what you understand and what needs another example. Check important facts against trusted material.", practice: "Explain the topic without AI, then compare your explanation with your notes and list one open question." },
         ],

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { aiJourneyWaves, flattenedJourneyTopics, journeyTopicCount } from "@/modules/learning/ai-journey";
 
-const progressKey = "skillsprint-ai-understanding-journey-v1";
+const progressKey = "skillsprint-ai-understanding-journey-v2";
 
 export function AIUnderstandingJourney({ onStartSearchPractice }: { onStartSearchPractice: () => void }) {
   const [completedCount, setCompletedCount] = useState(0);
