@@ -16,6 +16,26 @@ test("beginner prompt helper offers plain language, Tagalog and a student study 
   await expect(page.getByText(/Compare important claims with your course notes or textbook/)).toBeVisible();
 });
 
+test("Journey is the second learning menu item on desktop and mobile", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.locator("#ai-journey-title")).toBeVisible();
+  const desktopNav = page.getByRole("navigation", { name: "Main navigation" });
+  const desktopTargets = await desktopNav.locator(".nav-link").evaluateAll((links) => links.slice(0, 2).map((link) => link.getAttribute("href")));
+  expect(desktopTargets).toEqual(["#today", "#ai-understanding-journey"]);
+  await desktopNav.getByRole("link", { name: "AI Understanding Journey" }).click();
+  await expect(page).toHaveURL(/#ai-understanding-journey$/);
+  await expect(page.locator("#ai-understanding-journey")).toBeVisible();
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+  await expect(page.locator("#ai-journey-title")).toBeVisible();
+  const mobileNav = page.getByRole("navigation", { name: "Mobile navigation" });
+  const mobileTargets = await mobileNav.locator(".nav-link").evaluateAll((links) => links.slice(0, 2).map((link) => link.getAttribute("href")));
+  expect(mobileTargets).toEqual(["#today", "#ai-understanding-journey"]);
+  await mobileNav.getByRole("link", { name: "Journey", exact: true }).click();
+  await expect(page).toHaveURL(/#ai-understanding-journey$/);
+});
+
 test("AI Understanding Journey advances by topic, awards milestones and persists progress", async ({ page }) => {
   await page.goto("/");
   const journey = page.locator(".ai-journey");

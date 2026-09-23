@@ -35,7 +35,7 @@ export function AIUnderstandingJourney({ onStartSearchPractice }: { onStartSearc
     try { window.localStorage.setItem(progressKey, String(nextCount)); } catch { /* Do not block the learner if storage is unavailable. */ }
   };
 
-  return <section className="ai-journey" aria-labelledby="ai-journey-title">
+  return <section className="ai-journey" id="ai-understanding-journey" aria-labelledby="ai-journey-title">
     <div className="journey-heading">
       <div>
         <div className="eyebrow">YOUR PERSONAL AI LEARNING PATH</div>

@@ -24,6 +24,7 @@ function NavLinks({ mobile = false }: { mobile?: boolean }) {
   return <nav className={mobile ? "mobile-nav" : "side-nav"} aria-label={mobile ? "Mobile navigation" : "Main navigation"}>
     {!mobile && <p className="nav-label">Your learning</p>}
     <a className="nav-link active" href="#today"><Icon>⌂</Icon>Today</a>
+    <a className="nav-link" href="#ai-understanding-journey"><Icon>✦</Icon>{mobile ? "Journey" : "AI Understanding Journey"}</a>
     <a className="nav-link" href="#paths"><Icon>▦</Icon>{mobile ? "Paths" : "Learning paths"}</a>
     <a className="nav-link" href="#portfolio"><Icon>▤</Icon>{mobile ? "Saved" : "My portfolio"}</a>
     <a className="nav-link" href="#progress"><Icon>◷</Icon>{mobile ? "Progress" : "My progress"}</a>
