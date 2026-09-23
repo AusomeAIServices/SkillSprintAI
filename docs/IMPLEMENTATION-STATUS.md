@@ -1,0 +1,46 @@
+# Implementation status
+
+Updated: 23 September 2026. Stage: M0 complete; M1 local F01 vertical slice complete.
+
+## Repository inspection
+
+- Workspace contains the product blueprint and no application source or pre-existing Git metadata.
+- No pre-existing root `AGENTS.md` was found. Added repository-specific instructions based on the provided template and handoff prompt.
+- Node.js v24.18.0 and npm 11.16.0 are available. Docker CLI exists, but the Docker daemon is not running. No provider/API/database credentials are configured in the environment.
+- Installed Next.js 16.3.6, React 19.3.0, TypeScript 6.0.3, Vitest 5.0.1 and Playwright 1.63.0; pinned dependencies are recorded in the npm lockfile.
+- No product code, GitHub remote, cloud resources or learner data existed at kickoff.
+
+## M0 decisions
+
+1. **App shape:** TypeScript and Next.js App Router, modular monolith, learner UI with server routes. Confirm installed framework/package versions against current official compatibility information during setup.
+2. **M1 persistence:** use a local-only SQLite development database behind a repository interface, persisted to a gitignored workspace file. Node exposes `node:sqlite` in this available runtime, though it is experimental; isolate it behind a `LearningRepository`, document the Node minimum, and do not present it as the final hosted database. M2 production persistence remains PostgreSQL as documented.
+3. **Identity:** local development uses a fixed synthetic learner only. Non-development startup fails closed until maintained real authentication is configured. Never accept a client learner ID.
+4. **Content:** validate the authored JSON against a versioned schema. Seed lesson status remains draft; it may be previewed locally only. Learner projection is allowlisted and omits `correctChoiceId`, quiz explanations and `reviewerGuide` before submission. Attempts pin lesson ID/version/hash.
+5. **Assessment:** all three F01 quiz questions must be attempted before submission. With 3 questions and the 80% rule, proficiency requires 3/3, rubric >=6/8, and verification/privacy each >0. Completion additionally requires all five steps, submitted practice, attempted quiz, and reflection. Self-assessment remains explicitly labeled; no AI grading.
+6. **MVP boundary:** mock/disabled coach; static hints suffice. No external OpenAI credentials, cloud deployment or production auth required for local M1.
+7. **M0 reviews:** three delegated read-only reviews completed: UX interaction/accessibility, architecture/security, and independent QA. Key conclusions incorporated above; no agent edited files.
+
+## Milestone status
+
+| Milestone | State | Evidence / next step |
+|---|---|---|
+| M0 contracts | Complete | Decisions and status documented; root instructions added |
+| M1 F01 local slice | Complete | Responsive lesson UI, allowlisted lesson projection, local SQLite persistence, deterministic assessment, private evidence and review scheduling; build and automated checks pass |
+| M2 auth/PostgreSQL/20 lessons | Not started | Requires maintained auth choice, database setup, and 19 reviewed lessons |
+| M3 optional coach | Not started | Keep disabled; needs adapter, budget controls, evaluations and authorized config |
+| M4 pilot readiness | Not started | Requires remaining quality evidence and human/editorial/user inputs |
+
+## Validation record
+
+- `npm run typecheck`, `npm run lint`, `npm run test` (9 tests across 4 files), `npm run content:validate`, and `npm run build` pass.
+- `npm run test:e2e` passes the Chromium F01 journey, including answer-key privacy, navigation, draft persistence after reload, deterministic scoring, completion, private evidence and 320 px layout.
+- Desktop and mobile layouts were inspected in the in-app browser; no horizontal overflow was found at the inspected mobile viewport.
+- The authored lesson passes schema, timing, answer-key and rubric checks; it remains a draft pending human editorial review.
+- The environment has Node.js v24.18.0 and npm 11.16.0. Docker daemon is unavailable.
+
+## Open constraints
+
+- Local demo requires Node.js 24.15+ for the built-in SQLite module; SQLite remains a development-only adapter.
+- SQLite in Node 24 is experimental and only suitable as an isolated local M1 adapter; production should use the PostgreSQL path in the architecture.
+- The authored lesson is explicitly pending human editorial review; it cannot be represented as published pilot content.
+- No GitHub owner/repository or remote was supplied; no remote action has occurred.

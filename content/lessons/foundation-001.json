@@ -1,0 +1,138 @@
+{
+  "schemaVersion": "1.0",
+  "id": "foundation-001",
+  "curriculumCode": "F01",
+  "version": "1.0.0",
+  "status": "draft",
+  "title": "Ask a useful everyday question",
+  "pathwayId": "everyday-ai",
+  "audiences": ["individual", "information-worker"],
+  "skillIds": ["prompt.goal-context-constraints-output", "verification.supplied-facts"],
+  "prerequisites": [],
+  "durationMinutes": 15,
+  "objective": "Write a clear prompt for an afternoon plan and check the result against supplied facts.",
+  "productDependencies": [],
+  "externalPractice": {
+    "optionalProduct": "ChatGPT",
+    "instruction": "If you have access, try your prompt in ChatGPT. Otherwise assess the supplied example. Do not enter private personal information."
+  },
+  "steps": [
+    {
+      "id": "recall",
+      "type": "recall",
+      "minutes": 1,
+      "title": "Start with the result you want",
+      "text": "Imagine asking a friend to plan your afternoon. What would they need to know? Think of one detail before continuing. Today you will write a useful request and check whether an answer follows it."
+    },
+    {
+      "id": "learn",
+      "type": "instruction",
+      "minutes": 3,
+      "title": "Give four useful ingredients",
+      "text": "A useful request often includes your goal, relevant context, constraints and the output you want. A goal says what you are trying to achieve. Context supplies the facts the assistant needs. Constraints state limits. An output format makes the answer easier to use. A detailed prompt can still produce an incorrect answer, so check the result.",
+      "weakExample": "Plan something fun.",
+      "workedExample": "Plan a quiet afternoon for one adult between 1 pm and 4 pm using only the facts below. Start at the library. Keep spending at or below $12. Include travel time and a 30-minute buffer. Return a table with start time, end time, activity and cost. List any information that is missing rather than inventing it.",
+      "privacyNote": "Use the fictional facts provided. A street address, identity number or private calendar is not needed for this exercise."
+    },
+    {
+      "id": "apply",
+      "type": "practice",
+      "minutes": 6,
+      "title": "Create and inspect your plan",
+      "text": "Write your own prompt using the facts in the practice section. Then inspect either the supplied candidate answer or an answer you generate yourself. Mark any missing requirement. Save your prompt, a corrected plan and one check you performed."
+    },
+    {
+      "id": "check",
+      "type": "assessment",
+      "minutes": 3,
+      "title": "Check your understanding",
+      "text": "Answer the three questions, read the explanations and rate your saved result with the four-part rubric. Self-assessment is practice evidence, not independent verification."
+    },
+    {
+      "id": "reflect",
+      "type": "reflection",
+      "minutes": 2,
+      "title": "Keep something you can reuse",
+      "text": "Name one correction you made and another everyday situation where you would use the same prompting approach. Save your result to your private portfolio."
+    }
+  ],
+  "practice": {
+    "sourceLabel": "Fictional practice data; not real venue information",
+    "sourceFacts": [
+      {"id": "S1", "text": "Your available time is 1 pm to 4 pm. You start at the library."},
+      {"id": "S2", "text": "The library is open throughout that period and entry is free."},
+      {"id": "S3", "text": "The park is a 10-minute walk from the library and entry is free."},
+      {"id": "S4", "text": "The cafe is a 5-minute walk from the park. A drink costs $5. The cafe is open during the afternoon."},
+      {"id": "S5", "text": "Your spending limit is $12. Keep a 30-minute unallocated buffer within the afternoon."},
+      {"id": "S6", "text": "Weather and accessibility information have not been provided."}
+    ],
+    "candidateAnswer": "Read at the library from 1:00 to 2:00. Walk to the park from 2:00 to 2:10. Relax in the park from 2:10 to 3:20. Walk to the cafe from 3:20 to 3:25. Have a $5 drink from 3:25 to 4:00. It will be sunny and all routes are wheelchair-accessible.",
+    "deliverable": "A prompt, corrected time-and-cost plan, one source-based check, and a note identifying unknown information.",
+    "reviewerGuide": "The candidate spends only $5 and includes the stated walks, but allocates all 180 minutes, leaving no 30-minute buffer. It invents weather and accessibility claims. One possible correction shortens the park stop to 2:50, walks to the cafe until 2:55, ends the cafe visit at 3:30 and leaves 3:30–4:00 unallocated. Other valid schedules are acceptable."
+  },
+  "quiz": [
+    {
+      "id": "Q1",
+      "question": "Which addition makes 'Plan my afternoon' more actionable?",
+      "choices": [
+        {"id": "a", "text": "Say it is urgent without adding any details."},
+        {"id": "b", "text": "State the time available, budget, relevant facts and desired output."},
+        {"id": "c", "text": "Ask for the most confident answer possible."}
+      ],
+      "correctChoiceId": "b",
+      "explanation": "The time, budget, facts and output format give the assistant information it can use. Confidence or urgency does not supply those facts."
+    },
+    {
+      "id": "Q2",
+      "question": "What should you do with the candidate answer's weather and accessibility claims?",
+      "choices": [
+        {"id": "a", "text": "Treat them as confirmed because the answer sounds clear."},
+        {"id": "b", "text": "Assume both are false."},
+        {"id": "c", "text": "Mark them as unverified and check a suitable source before relying on them."}
+      ],
+      "correctChoiceId": "c",
+      "explanation": "The supplied facts do not establish either claim. Missing support does not prove a claim false; it means you need verification."
+    },
+    {
+      "id": "Q3",
+      "question": "Why does the candidate plan fail the buffer requirement?",
+      "choices": [
+        {"id": "a", "text": "It assigns every minute from 1 pm to 4 pm to an activity or travel."},
+        {"id": "b", "text": "The drink exceeds the $12 budget."},
+        {"id": "c", "text": "The library requires an entry fee."}
+      ],
+      "correctChoiceId": "a",
+      "explanation": "The complete three-hour period is allocated, so there is no unallocated 30-minute buffer. The drink is $5 and library entry is free."
+    }
+  ],
+  "rubric": [
+    {"id": "task-fit", "maxScore": 2, "criterion": "Prompt and plan include goal, facts, budget, times, output format and the buffer."},
+    {"id": "verification", "maxScore": 2, "minimumRequired": 1, "criterion": "Check time and spending against supplied facts and flag unsupported claims."},
+    {"id": "privacy", "maxScore": 2, "minimumRequired": 1, "criterion": "Use fictional data and do not add unnecessary personal information."},
+    {"id": "reflection", "maxScore": 2, "criterion": "Describe one useful correction and one future use of the approach."}
+  ],
+  "rubricAnchors": {"0": "Missing or materially wrong", "1": "Partially meets the criterion", "2": "Meets the criterion"},
+  "assessmentPolicy": {"quizMinimumPercent": 80, "rubricMinimumTotal": 6, "assessorType": "self", "aiMaySetScore": false},
+  "staticHints": [
+    "Underline the goal, context, constraints and output format in your prompt. Which ingredient is missing?",
+    "Add the minutes in the plan. Is any time left unallocated?",
+    "For each factual claim, point to a source fact. If you cannot, label it as something to verify."
+  ],
+  "reflectionPrompt": "What did you correct, and where could you reuse this approach?",
+  "reviewAfterDays": [1, 3, 7, 14],
+  "provenance": {
+    "contentType": "original-authored-example",
+    "author": "SkillSprint AI blueprint draft",
+    "createdAt": "2026-09-23",
+    "sourceCheckedAt": "2026-09-23",
+    "sources": [
+      {"url": "https://learn.chatgpt.com/docs/get-started-with-work", "scope": "Background on task-oriented ChatGPT usage; the four-part teaching method and fictional exercise are original proposed content."}
+    ],
+    "reviewStatus": "pending-human-editorial-review",
+    "reviewedBy": null
+  },
+  "deliveryPolicy": {
+    "serverOnlyFieldsUntilSubmission": ["quiz.correctChoiceId", "quiz.explanation", "practice.reviewerGuide"],
+    "note": "This authoring file contains answers. The learner endpoint must construct an allowlisted view; never send this entire file to the browser or coach."
+  }
+}
