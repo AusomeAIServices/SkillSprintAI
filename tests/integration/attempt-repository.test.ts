@@ -18,8 +18,12 @@ beforeAll(async () => {
 
 describe("local learning repository", () => {
   it("persists a draft, calculates scores on the server and writes completion once", () => {
+    const legacyAttempt = repo.createCurrentAttempt();
+    database.database().prepare("UPDATE attempts SET lesson_version=? WHERE id=?").run("1.0.0", legacyAttempt.id);
+    expect(repo.getCurrentAttempt()).toBeNull();
+
     let attempt = repo.createCurrentAttempt();
-    expect(attempt.lessonVersion).toBe("1.0.0");
+    expect(attempt.lessonVersion).toBe("1.1.0");
     expect(repo.getAttempt(randomUUID())).toBeNull();
 
     const draftPatch = {

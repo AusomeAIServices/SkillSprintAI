@@ -28,7 +28,7 @@ flowchart LR
 
 | Screen | Essential content | Primary action | Important state |
 |---|---|---|---|
-| Welcome | Outcome choices, honest 15-minute promise | Choose my first skill | Continue with default preferences |
+| Welcome | Reassure search-only beginners; compare Google Search and ChatGPT in plain language; show the 15-minute outcome | Start my first AI lesson | No account or technical vocabulary required |
 | Onboarding | Role, goal, time, optional baseline | Build my plan | Skip diagnostic without penalty |
 | Today | Next outcome, units, due review, progress | Start / Resume | Completed day suggests optional next unit |
 | Path detail | Skills, prerequisites, lesson sequence, access requirements | Start next lesson | Planned paths clearly unavailable |
@@ -44,12 +44,12 @@ flowchart LR
 ```text
 TODAY
 ┌───────────────┬─────────────────────────────────────────────────────┐
-│ SkillSprint   │ Good morning, Alex                 Daily plan: 15m │
+│ SkillSprint   │ New to AI? Start with what you know  Daily plan: 15m │
 │ Today         │                                                     │
 │ Paths         │ Today's result                                     │
-│ Portfolio     │ Turn messy notes into a clear action list          │
+│ Portfolio     │ From Google search to ChatGPT                     │
 │ Progress      │ 1 lesson · 15 minutes · AI at Work                  │
-│               │ [Start lesson]                                     │
+│               │ [Start your first AI lesson]                       │
 │               │                                                     │
 │ Settings      │ Your week: 2 practice tasks completed               │
 │               │ Review tomorrow: Checking an AI answer              │

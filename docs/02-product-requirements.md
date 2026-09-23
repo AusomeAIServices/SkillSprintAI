@@ -28,7 +28,7 @@ Learners can complete lessons with static examples without an external paid acco
 
 | ID | Story | Acceptance criteria |
 |---|---|---|
-| PR-01 | As a beginner I want a relevant starting point | Choose role and outcome without technical vocabulary; diagnostic can be skipped; external product prerequisites are visible |
+| PR-01 | As a beginner who knows Google Search, I want to understand how ChatGPT can help | In plain language, compare finding web pages with a conversational assistant; show everyday examples; explain that important facts still need checking; no account or technical vocabulary is required |
 | PR-02 | As a busy learner I want a 15-minute plan | Plans allocate 1/2/3/4 complete units for 15/30/45/60 minutes; current prerequisites hold; changing duration preserves attempts |
 | PR-03 | As an interrupted learner I want to resume | Last completed step and saved draft reload after sign-out/sign-in; save failures are visible; no completion awarded by elapsed time |
 | PR-04 | As a learner I want to practise | Task instructions, synthetic source material and required artifact are visible together; submit text with an explicit save action |

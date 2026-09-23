@@ -25,7 +25,7 @@ Updated: 23 September 2026. Stage: M0 complete; M1 local F01 vertical slice comp
 | Milestone | State | Evidence / next step |
 |---|---|---|
 | M0 contracts | Complete | Decisions and status documented; root instructions added |
-| M1 F01 local slice | Complete | Responsive lesson UI, allowlisted lesson projection, local SQLite persistence, deterministic assessment, private evidence and review scheduling; build and automated checks pass |
+| M1 F01 local slice | Complete | Search-to-ChatGPT beginner onboarding, F01 lesson v1.1.0, version-aware resume, local SQLite persistence, deterministic assessment, private evidence and review scheduling; build and automated checks pass |
 | M2 auth/PostgreSQL/20 lessons | Not started | Requires maintained auth choice, database setup, and 19 reviewed lessons |
 | M3 optional coach | Not started | Keep disabled; needs adapter, budget controls, evaluations and authorized config |
 | M4 pilot readiness | Not started | Requires remaining quality evidence and human/editorial/user inputs |
@@ -43,4 +43,4 @@ Updated: 23 September 2026. Stage: M0 complete; M1 local F01 vertical slice comp
 - Local demo requires Node.js 24.15+ for the built-in SQLite module; SQLite remains a development-only adapter.
 - SQLite in Node 24 is experimental and only suitable as an isolated local M1 adapter; production should use the PostgreSQL path in the architecture.
 - The authored lesson is explicitly pending human editorial review; it cannot be represented as published pilot content.
-- No GitHub owner/repository or remote was supplied; no remote action has occurred.
+- The workspace source is published at https://github.com/AusomeAIServices/SkillSprintAI on branch main. No cloud resources or paid subscriptions have been created.

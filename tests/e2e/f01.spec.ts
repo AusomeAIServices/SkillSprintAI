@@ -10,12 +10,14 @@ test("learner completes F01, saves private evidence, and resumes after reload", 
   expect(publicLesson).not.toContain("The candidate spends only $5");
 
   await page.goto("/");
-  await expect(page.getByRole("heading", { name: "Your next useful skill" })).toBeVisible();
-  await page.getByRole("button", { name: /Start lesson/ }).click();
-  await expect(page.getByRole("heading", { name: "A better everyday prompt" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "New to AI? Start with what you already know." })).toBeVisible();
+  await expect(page.getByText(/If you can search Google, you can start a conversation with ChatGPT/)).toBeVisible();
+  await expect(page.getByRole("heading", { name: "From Google search to ChatGPT" })).toBeVisible();
+  await page.getByRole("button", { name: /Start your first AI lesson/ }).click();
+  await expect(page.getByRole("heading", { name: "Your first useful question for ChatGPT" })).toBeVisible();
   await page.getByRole("button", { name: /Save and continue/ }).click();
   await page.getByRole("button", { name: /Save and continue/ }).click();
-  await expect(page.getByRole("heading", { name: "Create and inspect your plan" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Try a familiar task with ChatGPT" })).toBeVisible();
 
   const draftSaved = page.waitForResponse((response) => response.url().includes("/api/attempts/") && response.request().method() === "PATCH" && response.ok());
   await page.getByLabel("1. Your prompt").fill("Plan a quiet afternoon with the facts, budget and buffer in a table.");
@@ -27,7 +29,7 @@ test("learner completes F01, saves private evidence, and resumes after reload", 
   await expect(page.getByLabel("1. Your prompt")).toHaveValue(/Plan a quiet afternoon/);
   await page.getByRole("button", { name: /Continue to check/ }).click();
 
-  await page.getByRole("radio", { name: /State the time available, budget/ }).check();
+  await page.getByRole("radio", { name: /Google finds pages to check/ }).check();
   await page.getByRole("radio", { name: /Mark them as unverified/ }).check();
   await page.getByRole("radio", { name: /It assigns every minute/ }).check();
   for (const dimension of ["task fit", "verification", "privacy", "reflection"]) {

@@ -6,8 +6,7 @@ import { STEP_IDS, type Attempt, type LearnerDraft, type LearnerLesson, type Pri
 
 type SavePatch = { currentStep?: StepId; draftPatch?: Partial<LearnerDraft> };
 type SaveState = "saved" | "saving" | "error";
-const stepTitles: Record<StepId, string> = { recall: "Start with the result you want", learn: "Give four useful ingredients", apply: "Create and inspect your plan", check: "Check your understanding", reflect: "Keep something you can reuse" };
-const stepDescriptions: Record<StepId, string> = { recall: "Think of one detail an assistant would need before it could help.", learn: "A worked example shows how a clear request gives an answer useful boundaries.", apply: "Use fictional details. Nothing here requires an external AI account.", check: "Choose an answer for each question, then rate your own work.", reflect: "Save one result you can return to and reuse." };
+const stepDescriptions: Record<StepId, string> = { recall: "You already know how to ask a question. Here is what changes.", learn: "Use everyday words, add helpful details and ask a follow-up.", apply: "Practise with a familiar task and fictional information.", check: "Choose an answer for each question, then rate your own work.", reflect: "Save one result you can return to and reuse." };
 const paths = [
   { icon: "✦", color: "", title: "Everyday AI", detail: "Useful AI skills for everyday life", state: "Ready to start" },
   { icon: "▤", color: "green", title: "AI at Work", detail: "Writing, summaries and repeatable workflows", state: "Coming soon" },
@@ -204,7 +203,7 @@ export default function LearningShell() {
   return <><TopBar /><div className="app-layout" id="today">
     <NavLinks />
     <main className="main-column">
-      <div className="welcome-row"><div><div className="eyebrow">YOUR DAILY PRACTICE</div><h1>Your next useful skill</h1><p>Build an AI habit that fits the way you work.</p></div>
+      <div className="welcome-row"><div><div className="eyebrow">YOUR DAILY PRACTICE</div><h1>New to AI? Start with what you already know.</h1><p>If you can search Google, you can start a conversation with ChatGPT. No AI experience needed.</p></div>
         <label className="field" style={{ maxWidth: 138 }}><span className="sr-only">Choose daily learning time</span><select className="duration-select" value={duration} onChange={(event) => {
           const next = Number(event.target.value); setDuration(next);
           try { localStorage.setItem("skillsprint-daily-minutes", String(next)); } catch { /* optional preference */ }
@@ -213,11 +212,11 @@ export default function LearningShell() {
       {message && <p className="inline-error" role="alert">{message}</p>}
       <section className="hero-card" aria-labelledby="today-title"><div className="hero-content">
         <div className="pill-row"><span className="pill">✦ TODAY&apos;S PICK</span><span className="pill neutral">{sessionUnits} × 15 min</span></div>
-        <h2 id="today-title">Ask a useful everyday question</h2>
-        <p>Turn a broad request into one with a clear goal, helpful details and an answer you know how to check.</p>
+        <h2 id="today-title">From Google search to ChatGPT</h2>
+        <p>See how a familiar question can become an explanation, a draft or a simple plan—and when to check the answer.</p>
         <div className="hero-meta"><span>◷ &nbsp;15 min</span><span className="meta-dot" /><span>Beginner friendly</span><span className="meta-dot" /><span>Everyday AI</span></div>
-        <div className="button-row"><button className="primary-button" onClick={() => void startLesson()}>Start lesson <span aria-hidden="true">→</span></button><span style={{ color: "var(--muted)", fontSize: 11 }}>{sessionUnits > 1 ? "One of " + sessionUnits + " planned units is ready in this preview." : "One complete learning unit"}</span></div>
-        <p className="preview-notice">F01 is a draft preview using fictional facts. You can finish without an external AI account.</p>
+        <div className="button-row"><button className="primary-button" onClick={() => void startLesson()}>Start your first AI lesson <span aria-hidden="true">→</span></button><span style={{ color: "var(--muted)", fontSize: 11 }}>{sessionUnits > 1 ? "One of " + sessionUnits + " planned units is ready in this preview." : "One complete learning unit"}</span></div>
+        <p className="preview-notice">F01 is a draft preview with fictional practice. No ChatGPT account is needed, and nothing is sent to ChatGPT.</p>
       </div></section>
       <div className="section-heading" id="paths"><h2>Choose a learning path</h2><a href="#paths">Browse paths&nbsp; →</a></div>
       <section className="path-grid" aria-label="Learning paths">{paths.map((path) => <article className="path-card" key={path.title}>
@@ -258,14 +257,14 @@ function LessonWorkspace(props: {
     <div className="lesson-toolbar"><button className="back-link" onClick={props.onBack}><span aria-hidden="true">←</span> Today</button>
       <div className="toolbar-actions"><span className="saved-label" aria-live="polite">{props.saveState === "saving" ? "Saving…" : props.saveState === "error" ? "Not saved" : "● Saved"}</span><button className="quiet-button" onClick={props.onSave}>Save and exit</button></div>
     </div>
-    <div className="lesson-heading"><div><div className="eyebrow">EVERYDAY AI · 15 MINUTES</div><h1 id="lesson-title" tabIndex={-1}>A better everyday prompt</h1><p>One small technique. One result you can use again.</p></div><span className="step-count">Step {index + 1} of 5</span></div>
+    <div className="lesson-heading"><div><div className="eyebrow">EVERYDAY AI · 15 MINUTES</div><h1 id="lesson-title" tabIndex={-1}>{props.lessonData.title}</h1><p>One small technique. One result you can use again.</p></div><span className="step-count">Step {index + 1} of 5</span></div>
     <div className="step-track" role="progressbar" aria-label="Lesson steps" aria-valuemin={1} aria-valuemax={5} aria-valuenow={index + 1}>{STEP_IDS.map((id, itemIndex) => <span key={id} className={"step-segment " + (itemIndex <= index ? "done" : "")} />)}</div>
-    <section className="lesson-panel" aria-labelledby="step-title"><header className="lesson-panel-head"><div className="eyebrow">STEP {index + 1} · ABOUT {step.minutes} MIN</div><h2 id="step-title" tabIndex={-1}>{stepTitles[props.currentStep]}</h2><p>{stepDescriptions[props.currentStep]}</p></header>
+    <section className="lesson-panel" aria-labelledby="step-title"><header className="lesson-panel-head"><div className="eyebrow">STEP {index + 1} · ABOUT {step.minutes} MIN</div><h2 id="step-title" tabIndex={-1}>{step.title}</h2><p>{stepDescriptions[props.currentStep]}</p></header>
       <div className="lesson-panel-body">
-        {props.currentStep === "recall" && <><p className="lesson-copy">{step.text}</p><div className="callout">Use the fictional information in this lesson. Avoid entering names, addresses, account details or other private personal information into AI tools.</div><p className="preview-notice">This preview uses made-up practice data. ChatGPT is optional; you can complete the exercise here.</p></>}
+        {props.currentStep === "recall" && <><p className="lesson-copy">{step.text}</p><div className="example-card weak"><span className="example-label">Google Search</span><p>Find pages about a question, then choose which sources to open and check.</p></div><div className="example-card"><span className="example-label">ChatGPT</span><p>Ask, “Use these choices to plan a quiet afternoon. Keep it under $12 and leave me 30 minutes free.” It can organize the details into a schedule.</p></div><div className="callout">Use Search for current facts and official pages. ChatGPT can make mistakes or lack recent information, so verify claims that matter. Never enter private personal details in this fictional exercise.</div><p className="preview-notice">No ChatGPT account is needed. This lesson uses made-up information; nothing is sent to ChatGPT.</p></>}
         {props.currentStep === "learn" && <><p className="lesson-copy">{step.text}</p><div className="example-card weak"><span className="example-label">A broad request</span><p>{step.weakExample}</p></div><div className="example-card"><span className="example-label">A more useful request</span><p>{step.workedExample}</p></div><div className="callout">{step.privacyNote}</div><p className="lesson-copy">Goal · context · constraints · output. Add enough information to shape the result, then check any facts that matter.</p></>}
         {props.currentStep === "apply" && <><p className="lesson-copy">{props.lessonData.practice.deliverable}</p><details><summary style={{ color: "var(--brand)", cursor: "pointer", fontSize: 12, fontWeight: 700 }}>Show fictional practice facts</summary><ul className="source-list">{props.lessonData.practice.sourceFacts.map((fact) => <li key={fact.id}><span className="source-id">{fact.id}</span>{fact.text}</li>)}</ul></details>
-          <div className="candidate-card"><strong>Inspect this candidate plan</strong>{props.lessonData.practice.candidateAnswer}</div>
+          <div className="candidate-card"><strong>Sample ChatGPT-style reply (fictional)</strong>{props.lessonData.practice.candidateAnswer}</div>
           <div className="field-grid" style={{ marginTop: 17 }}>
             <Field label="1. Your prompt" hint="Include your goal, context, constraints and the format you want." value={props.attempt.draft.prompt} onChange={(value) => props.onDraft("prompt", value)} placeholder="Plan a quiet afternoon using only the facts above…" full />
             <Field label="2. Your corrected plan" hint="Leave the required 30-minute buffer and stay within the budget." value={props.attempt.draft.correctedPlan} onChange={(value) => props.onDraft("correctedPlan", value)} placeholder="Describe the schedule you would keep…" />

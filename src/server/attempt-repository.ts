@@ -23,8 +23,8 @@ function mapAttempt(row: DbRow): Attempt {
 }
 
 export function getCurrentAttempt(): Attempt | null {
-  const row = database().prepare(`SELECT * FROM attempts WHERE user_id = ? AND lesson_id = ? ORDER BY updated_at DESC LIMIT 1`)
-    .get(LOCAL_DEMO_USER_ID, lesson.id) as DbRow | undefined;
+  const row = database().prepare(`SELECT * FROM attempts WHERE user_id = ? AND lesson_id = ? AND lesson_version = ? ORDER BY updated_at DESC LIMIT 1`)
+    .get(LOCAL_DEMO_USER_ID, lesson.id, lesson.version) as DbRow | undefined;
   return row ? mapAttempt(row) : null;
 }
 

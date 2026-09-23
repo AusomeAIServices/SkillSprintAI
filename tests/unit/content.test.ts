@@ -7,6 +7,13 @@ describe("F01 authored content", () => {
     expect(lesson.steps.reduce((sum, step) => sum + step.minutes, 0)).toBe(15);
   });
 
+  it("starts with a plain-language Google Search to ChatGPT comparison", () => {
+    expect(lesson.version).toBe("1.1.0");
+    expect(lesson.steps[0].text).toMatch(/If you can type a question into Google/);
+    expect(lesson.steps[0].text).toMatch(/follow-up in ordinary language/);
+    expect(lesson.quiz[0].question).toMatch(/Google Search and ChatGPT/);
+  });
+
   it("marks the fixture fictional and leaves lesson publication for human review", () => {
     expect(lesson.practice.sourceLabel).toMatch(/Fictional/i);
     expect(lesson.status).toBe("draft");

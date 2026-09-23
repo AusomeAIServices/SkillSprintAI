@@ -3,9 +3,9 @@
 **One useful AI skill. One practical result. Fifteen minutes.**
 
 Working product name: **SkillSprint AI**. Repository working name: `openai-microlearn`.
-Prepared 23 September 2026. Status: local M1 F01 vertical slice implemented; auth, the complete 20-lesson curriculum, coaching, cloud deployment and a GitHub remote remain deferred. The working name has not been checked for trademark or domain availability.
+Prepared 23 September 2026. Status: local M1 F01 vertical slice implemented; auth, the complete 20-lesson curriculum, coaching and cloud deployment remain deferred. The working name has not been checked for trademark or domain availability.
 
-SkillSprint AI turns AI learning into a daily practice: choose an outcome, learn a small concept, apply it to a realistic task, check the result, and save evidence of a skill. Learners plan 15, 30, 45, or 60 minutes a day. The working prototype has one complete, local-only 15-minute F01 lesson.
+SkillSprint AI turns AI learning into a daily practice: choose an outcome, learn a small concept, apply it to a realistic task, check the result, and save evidence of a skill. Its first lesson starts with what a Google-search user already knows, then shows how ChatGPT can explain, draft, summarize or organize information—and why important facts still need checking. Learners plan 15, 30, 45, or 60 minutes a day. The working prototype has one complete, local-only 15-minute F01 lesson.
 
 The product serves individuals, information workers, nontechnical professionals, executives, IT professionals, and AI practitioners. Launch with everyday ChatGPT and workplace outcomes; expand into Codex, agent development, and orchestration after the learning loop is validated.
 
@@ -50,6 +50,6 @@ npm run dev
 
 Open `http://localhost:3000`. Attempts persist in the ignored `.data` SQLite file. The preview uses a single synthetic local learner; do not host it or enter real learner data. It makes no OpenAI calls. To check it, run `npm run typecheck`, `npm run test`, `npm run lint`, `npm run content:validate`, and `npm run build`. Browser tests need Chromium installed with `npx playwright install chromium`, then `npm run test:e2e`.
 
-No GitHub repository, remote, issue, pull request, cloud resource, or paid subscription has been created. See the workflow document for the repository setup sequence.
+The source is published at [AusomeAIServices/SkillSprintAI](https://github.com/AusomeAIServices/SkillSprintAI). No cloud resources or paid subscriptions have been created.
 
 All design choices are proposals unless marked verified. Product capabilities were checked against official documentation on the preparation date; availability must be rechecked in the account used for implementation. See [the source register](docs/08-sources-and-decisions.md).
