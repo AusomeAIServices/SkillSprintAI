@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
 import { AIUnderstandingJourney } from "@/components/ai-understanding-journey";
+import { ThemePicker } from "@/components/theme-picker";
 import { learningPaths } from "@/modules/learning/pathways";
 import { STEP_IDS, type Attempt, type LearnerDraft, type LearnerLesson, type PrivateArtifact, type StepId } from "@/modules/learning/types";
 
@@ -21,7 +22,7 @@ const pathIcons: Record<string, { icon: string; color: string }> = {
 
 function Icon({ children }: { children: ReactNode }) { return <span className="nav-icon" aria-hidden="true">{children}</span>; }
 function TopBar() {
-  return <header className="topbar"><Link className="brand" href="/" aria-label="SkillSprint AI home"><span className="brand-mark" aria-hidden="true">S</span>SkillSprint AI</Link><div className="topbar-right"><span>Learning preview</span><span className="avatar" aria-label="Local learner profile">A</span></div></header>;
+  return <header className="topbar"><Link className="brand" href="/" aria-label="SkillSprint AI home"><span className="brand-mark" aria-hidden="true">S</span>SkillSprint AI</Link><div className="topbar-right"><span>Learning preview</span><ThemePicker /><span className="avatar" aria-label="Local learner profile">A</span></div></header>;
 }
 function NavLinks({ mobile = false }: { mobile?: boolean }) {
   return <nav className={mobile ? "mobile-nav" : "side-nav"} aria-label={mobile ? "Mobile navigation" : "Main navigation"}>

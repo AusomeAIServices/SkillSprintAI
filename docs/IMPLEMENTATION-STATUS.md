@@ -67,3 +67,10 @@ Updated: 24 September 2026. Stage: M0 complete; M1 local F01 vertical slice plus
 - Each unit links to public source pages checked on 24 September 2026; teaching copy and synthetic exercises are original paraphrases. Optional source links open outside the app, while exercises require no account or live model.
 - Practice checks are instructional and do not produce scored completion or proficiency. Only the four practised module IDs are saved in browser storage; free-text reflections and prompts are not persisted.
 - Unit coverage checks four units, source links, the chat sequence and context fixtures. Chromium coverage verifies all four interactions, progress persistence, mobile width and zero API calls during the exercises.
+
+## Gamified journey and color themes
+
+- Added a three-wave quest map above the active What is AI? topic. It shows the current, upcoming, and completed waves with per-wave topic counts. The existing 27-topic authored sequence, self-reported “AI Understand” progression, 10 XP per topic, and milestone badges remain unchanged; these rewards do not indicate scored proficiency.
+- Added tactile depth to quest cards and learning-path cards using layered shadows and restrained hover transforms. Reduced-motion preferences remove the transforms, and the map stacks at narrow widths.
+- Learners can choose Indigo, Ocean, Forest, or Sunset from the header on the main menu, Gen AI Introduction, and learning-path pages. The choice is stored only in this browser and applied to shared brand, hero, and journey surfaces. No account setting or server record is implied.
+- Validation on 24 September 2026: `npm run typecheck`, `npm run lint`, `npm run test` (15 tests), `npm run content:validate`, `npm run build`, and `npm run test:e2e` (9 Chromium tests) pass. New browser coverage checks theme persistence across reloads and routes, quest progress, 320 px width, keyboard Escape, and reduced motion. The in-app browser connection was unavailable in this session; Chromium test automation provided rendered interaction coverage.

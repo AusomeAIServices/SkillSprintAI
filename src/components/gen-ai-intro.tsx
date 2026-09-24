@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { ThemePicker } from "@/components/theme-picker";
 import { chatJourney, contextCards, genAiIntroModules, type IntroModuleId } from "@/modules/learning/gen-ai-intro";
 
 const storageKey = "skillsprint-gen-ai-intro-practised-v1";
@@ -64,7 +65,7 @@ export function GenAiIntro() {
     setContextChecked(false);
   }
 
-  return <><header className="topbar"><Link className="brand" href="/"><span className="brand-mark" aria-hidden="true">S</span>SkillSprint AI</Link><Link className="back-link" href="/">← Main menu</Link></header>
+  return <><header className="topbar"><Link className="brand" href="/"><span className="brand-mark" aria-hidden="true">S</span>SkillSprint AI</Link><div className="topbar-right"><ThemePicker /><Link className="back-link" href="/">← <span className="back-label">Main menu</span></Link></div></header>
     <main className="gen-intro-shell">
       <div className="course-breadcrumb"><Link href="/">Today</Link><span> / </span><span>Gen AI Introduction</span></div>
       <header className="gen-intro-hero"><div className="eyebrow">FOUR SHORT MODULES · 15 MIN EACH</div><h1>Gen AI Introduction</h1><p>Start in plain language, try a scripted chat, write a better prompt, then choose the context an AI system should actually see.</p><div className="gen-intro-meta"><span>◷ 60 minutes total</span><span>✦ No AI account needed</span><span>↗ Public sources linked in every module</span></div><div className="gen-intro-progress" role="progressbar" aria-label="Gen AI Introduction practice progress" aria-valuemin={0} aria-valuemax={4} aria-valuenow={ready ? practised.length : 0}><span style={{ width: `${ready ? practised.length * 25 : 0}%` }} /></div><small>{ready ? practised.length : "–"} of 4 modules practised on this device</small></header>

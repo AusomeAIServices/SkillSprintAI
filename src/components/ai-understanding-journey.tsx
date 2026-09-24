@@ -49,6 +49,18 @@ export function AIUnderstandingJourney({ onStartSearchPractice, searchPracticeAc
       </div>
     </div>
 
+    <ol className="quest-map" aria-label="Three-wave learning journey">
+      {aiJourneyWaves.map((wave, waveIndex) => {
+        const start = aiJourneyWaves.slice(0, waveIndex).reduce((sum, prior) => sum + prior.milestones.reduce((count, milestone) => count + milestone.topics.length, 0), 0);
+        const total = wave.milestones.reduce((count, milestone) => count + milestone.topics.length, 0);
+        const done = Math.max(0, Math.min(completedCount - start, total));
+        const status = done === total ? "Complete" : completedCount >= start && completedCount < start + total ? "Current wave" : "Coming up";
+        return <li className={"quest-stop " + (done === total ? "quest-complete" : status === "Current wave" ? "quest-current" : "quest-upcoming")} key={wave.id}>
+          <span className="quest-orb" aria-hidden="true">{done === total ? "★" : `0${waveIndex + 1}`}</span>
+          <div className="quest-copy"><span className="quest-kicker">WAVE {waveIndex + 1} · {status}</span><strong>{wave.title.replace(/^Wave \d+ · /, "")}</strong><small>{done} of {total} topics explored</small></div>
+        </li>;
+      })}
+    </ol>
     <div className="journey-progress-wrap">
       <div className="journey-progress-label"><span>{isReady ? completedCount + " of " + journeyTopicCount + " topics" : "Loading your progress…"}</span><span>{progressPercent}%</span></div>
       <div className="journey-progress" role="progressbar" aria-label="What is AI? learning progress" aria-valuemin={0} aria-valuemax={100} aria-valuenow={isReady ? progressPercent : 0}><span style={{ width: (isReady ? progressPercent : 0) + "%" }} /></div>
