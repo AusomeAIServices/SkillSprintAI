@@ -5,7 +5,7 @@
 Working product name: **SkillSprint AI**. Repository working name: `openai-microlearn`.
 Prepared 23 September 2026. Status: local M1 F01 vertical slice plus a seven-path, 112-unit self-guided course preview; auth, reviewed/scored lessons beyond F01, coaching and cloud deployment remain deferred. The working name has not been checked for trademark or domain availability.
 
-SkillSprint AI turns AI learning into a daily practice: choose an outcome, learn a small concept, apply it to a realistic task, check the result, and save evidence of a skill. Its first lesson starts with what a Google-search user already knows, then shows how ChatGPT can explain, draft, summarize or organize information—and why important facts still need checking. Learners plan 15, 30, 45, or 60 minutes a day. The working prototype has one scored local-only 15-minute F01 draft lesson and 112 self-guided practice units across seven paths, each with a five-step worked journey and reference answers.
+SkillSprint AI turns AI learning into a daily practice: choose an outcome, learn a small concept, apply it to a realistic task, check the result, and save evidence of a skill. Its first lesson starts with what a Google-search user already knows, then shows how ChatGPT can explain, draft, summarize or organize information—and why important facts still need checking. Learners plan 15, 30, 45, or 60 minutes a day. The working prototype has one scored local-only 15-minute F01 draft lesson, 112 self-guided practice units across seven paths with worked examples, and 81 scripted offline chats across the 27 What is AI? journey topics.
 
 The product serves individuals, information workers, nontechnical professionals, executives, IT professionals, and AI practitioners. Launch with everyday ChatGPT and workplace outcomes; expand into Codex, agent development, and orchestration after the learning loop is validated.
 
@@ -48,7 +48,7 @@ $env:SKILLSPRINT_DB_PATH = '.data/skillsprint-local.sqlite'
 npm run dev
 ```
 
-Open `http://localhost:3000`. Attempts persist in the ignored `.data` SQLite file. The preview uses a single synthetic local learner for F01. Other path drafts save only in the current browser and are self-reported practice, not scored completion or proficiency. Do not host the preview or enter real learner data. It makes no OpenAI calls. To check it, run `npm run typecheck`, `npm run test`, `npm run lint`, `npm run content:validate`, and `npm run build`. Browser tests need Chromium installed with `npx playwright install chromium`, then `npm run test:e2e`.
+Open `http://localhost:3000`. Attempts persist in the ignored `.data` SQLite file. The preview uses a single synthetic local learner for F01. Other path drafts save only in the current browser and are self-reported practice, not scored completion or proficiency. Do not host the preview or enter real learner data. Its journey chat simulator uses prewritten prompt-and-response examples and makes no OpenAI calls. To check it, run `npm run typecheck`, `npm run test`, `npm run lint`, `npm run content:validate`, and `npm run build`. Browser tests need Chromium installed with `npx playwright install chromium`, then `npm run test:e2e`.
 
 The source is published at [AusomeAIServices/SkillSprintAI](https://github.com/AusomeAIServices/SkillSprintAI). No cloud resources or paid subscriptions have been created.
 

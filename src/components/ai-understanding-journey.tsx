@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { aiJourneyWaves, flattenedJourneyTopics, journeyTopicCount } from "@/modules/learning/ai-journey";
+import { OfflineChatSimulator } from "@/components/offline-chat-simulator";
 
 const progressKey = "skillsprint-ai-understanding-journey-v2";
 
@@ -59,6 +60,7 @@ export function AIUnderstandingJourney({ onStartSearchPractice, searchPracticeAc
       <h3>{current.title}</h3>
       <p className="journey-explanation">{current.explanation}</p>
       <div className="journey-practice"><span className="journey-practice-label">TRY THIS</span><p>{current.practice}</p></div>
+      <OfflineChatSimulator key={current.id} topicId={current.id} title={current.title} />
       <div className="journey-level-track" aria-label={currentMilestone.title + " topic levels"}>
         {currentMilestone.topics.map((topic, index) => <div key={topic.id} className={"journey-level " + (index < currentLevelIndex ? "is-complete" : index === currentLevelIndex ? "is-current" : "is-upcoming")}>
           <span className={"difficulty-pill difficulty-" + topic.difficulty.toLowerCase()}>{index < currentLevelIndex ? "✓ " : ""}{topic.difficulty}</span>
