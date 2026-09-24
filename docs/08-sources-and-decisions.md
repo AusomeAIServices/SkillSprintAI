@@ -40,3 +40,16 @@ Before repository publication: specify GitHub owner/repository, visibility, coll
 ## What this pack does not establish
 
 No competitor market share, market size, product-market fit, scientifically optimal learning interval, security certification, OpenAI affiliation, professional accreditation, cross-cloud API parity, exact provider prices or guaranteed learning outcome has been claimed. Product design and learning rules should be validated through the proposed pilot.
+
+## Gen AI Introduction teaching sources (checked 24 September 2026)
+
+The four-unit local module uses original paraphrases and fictional exercises. The following public pages support its concepts; they do not endorse or certify SkillSprint AI. Specific product features and availability should be rechecked before publication.
+
+| Module concept | Public source | Use in the local lesson |
+|---|---|---|
+| AI, models and products | [OpenAI Academy: AI fundamentals](https://openai.com/academy/what-is-ai/) | Plain-language distinction between AI, models, and ChatGPT |
+| Generative content and grounding | [Google Cloud: Generative AI glossary](https://docs.cloud.google.com/docs/generative-ai/glossary) | Content generation versus classification; connecting claims to sources |
+| Starting and refining a chat | [OpenAI Academy: Getting started with ChatGPT](https://openai.com/academy/getting-started/) | First prompt and follow-up conversation |
+| Clear prompts and iteration | [OpenAI Help: Prompt engineering best practices](https://help.openai.com/en/articles/10032626-prompt-engineering-best-practices-for-chatgpt), [OpenAI Academy: Writing with ChatGPT](https://openai.com/academy/writing/) | Goal, context, limits, format, and review |
+| Responsible use | [OpenAI Academy: Responsible and safe use](https://openai.com/academy/responsible-and-safe-use/) | Human review of consequential outputs |
+| Context curation | [Anthropic Engineering: Effective context engineering for AI agents](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents), [OpenAI API: Prompt engineering](https://developers.openai.com/api/docs/guides/prompt-engineering) | Relevant source/history/tool context; untrusted content boundaries |

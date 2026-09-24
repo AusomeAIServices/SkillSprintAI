@@ -8,9 +8,9 @@ Visual direction: calm, practical, optimistic. Warm off-white canvas, dark ink t
 
 ## Information architecture
 
-Primary navigation: **Today · What is AI? · Paths · Portfolio · Progress**. Settings includes learning preferences, accessibility, timezone, notification consent, data export and deletion. On mobile use five bottom navigation items; on desktop use a left navigation rail. The app opens on Today. An in-progress lesson resumes only when the learner selects Continue; a completed lesson opens for review only when selected. A lesson workspace has a visible Save and exit action that returns to Today after saving.
+Primary navigation: **Today · What is AI? · Gen AI Introduction · Paths · Portfolio · Progress**. Settings includes learning preferences, accessibility, timezone, notification consent, data export and deletion. On mobile use six compact bottom navigation items; on desktop use a left navigation rail. The app opens on Today. An in-progress lesson resumes only when the learner selects Continue; a completed lesson opens for review only when selected. A lesson workspace has a visible Save and exit action that returns to Today after saving.
 
-Routes: `/start`, `/today`, `/paths`, `/paths/:slug`, `/learn/:lessonId`, `/review`, `/portfolio`, `/portfolio/:artifactId`, `/progress`, `/settings`. Content editors use Git in MVP; no hidden admin interface is implied.
+Routes: `/start`, `/today`, `/gen-ai-introduction`, `/paths`, `/paths/:slug`, `/learn/:lessonId`, `/review`, `/portfolio`, `/portfolio/:artifactId`, `/progress`, `/settings`. Content editors use Git in MVP; no hidden admin interface is implied.
 
 ```mermaid
 flowchart LR

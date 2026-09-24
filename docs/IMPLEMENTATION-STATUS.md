@@ -1,6 +1,6 @@
 # Implementation status
 
-Updated: 23 September 2026. Stage: M0 complete; M1 local F01 vertical slice plus seven-path self-guided curriculum preview.
+Updated: 24 September 2026. Stage: M0 complete; M1 local F01 vertical slice plus seven-path self-guided curriculum preview.
 
 ## Repository inspection
 
@@ -32,8 +32,8 @@ Updated: 23 September 2026. Stage: M0 complete; M1 local F01 vertical slice plus
 
 ## Validation record
 
-- `npm run typecheck`, `npm run lint`, `npm run test` (13 tests across 6 files), `npm run content:validate`, and `npm run build` pass.
-- `npm run test:e2e` passes six Chromium tests covering all seven path pages and: prompt helper and student guide, plus the F01 journey including answer-key privacy, navigation, draft persistence after reload, deterministic scoring, completion, private evidence and 320 px layout.
+- `npm run typecheck`, `npm run lint`, `npm run test` (15 tests across 7 files), `npm run content:validate`, and `npm run build` pass.
+- `npm run test:e2e` passes seven Chromium tests covering all seven path pages and: prompt helper and student guide, plus the F01 journey including answer-key privacy, navigation, draft persistence after reload, deterministic scoring, completion, private evidence and 320 px layout.
 - Desktop and mobile layouts were inspected in the in-app browser; no horizontal overflow was found at the inspected mobile viewport.
 - The authored lesson passes schema, timing, answer-key and rubric checks; it remains a draft pending human editorial review.
 - The environment has Node.js v24.18.0 and npm 11.16.0. Docker daemon is unavailable.
@@ -60,3 +60,10 @@ Updated: 23 September 2026. Stage: M0 complete; M1 local F01 vertical slice plus
 
 - Added three scripted prompt/reply examples for each of the 27 What is AI? topics (81 total). The learner can select a sample and reveal its authored reply; editing the prompt cannot generate a new response and produces a clear notice. No network or live AI subscription is used by the simulator.
 - Unit validation checks complete topic coverage and distinct examples. Chromium coverage walks all 27 topics, verifies the three options, scripted replies, edited-prompt behavior, and zero API requests during simulator interaction.
+
+## Gen AI Introduction preview
+
+- Added `/gen-ai-introduction` and a discoverable main-menu entry after What is AI?. Four 15-minute draft units teach generative AI basics, a three-turn offline chat, everyday prompt construction, and context curation with conflict and untrusted-text boundaries.
+- Each unit links to public source pages checked on 24 September 2026; teaching copy and synthetic exercises are original paraphrases. Optional source links open outside the app, while exercises require no account or live model.
+- Practice checks are instructional and do not produce scored completion or proficiency. Only the four practised module IDs are saved in browser storage; free-text reflections and prompts are not persisted.
+- Unit coverage checks four units, source links, the chat sequence and context fixtures. Chromium coverage verifies all four interactions, progress persistence, mobile width and zero API calls during the exercises.

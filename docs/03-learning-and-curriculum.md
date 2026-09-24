@@ -45,6 +45,19 @@ Each button click completes one topic and adds 10 locally stored XP. A badge is 
 
 Recommended one-day rhythm: F01–F02 morning; F03–F04 late morning; F05–F06 afternoon; F07–F08 evening. F01 includes a basic privacy reminder and an accuracy check; these protections are not deferred until F07.
 
+## Gen AI Introduction (local draft preview)
+
+Four optional 15-minute units bridge the What is AI? journey and the longer pathways. They are self-guided practice, separate from the scored F01 lesson, and use original teaching copy paraphrased from linked public sources. External reading is optional; no account or provider call is required for the exercises.
+
+| Unit | Learner result | Practice |
+|---|---|---|
+| Gen AI for Dummies | Distinguish content generation from search and fixed arithmetic | Choose the generative example and explain what still needs checking |
+| GenAIChat Experience Journey | Improve a chat through three turns | Reveal scripted replies to a broad request, added context, and a verification follow-up |
+| Prompt Engineering for Regular People | Write a four-part prompt | Supply goal, context, constraints, and output; inspect a structure check |
+| Context Engineering for AI Peeps | Curate the information available to an AI system | Keep two conflicting project notes and exclude irrelevant or untrusted material |
+
+The context unit distinguishes a written prompt from the wider information available at response time, including source excerpts, useful history and tool results. Selecting more information is not automatically better. Its exercise treats instructions embedded in retrieved material as untrusted data. The app labels its checks instructional and stores only self-reported practice markers in the current browser.
+
 ## Seven pathways
 
 Durations below include each pathway's own units. Prerequisites are additional unless demonstrated through placement. A learner without prior experience follows Foundation before specialization.

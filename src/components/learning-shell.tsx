@@ -28,6 +28,7 @@ function NavLinks({ mobile = false }: { mobile?: boolean }) {
     {!mobile && <p className="nav-label">Your learning</p>}
     <a className="nav-link active" href="#today"><Icon>⌂</Icon>Today</a>
     <a className="nav-link" href="#ai-understanding-journey"><Icon>✦</Icon>What is AI?</a>
+    <Link className="nav-link" href="/gen-ai-introduction"><Icon>◇</Icon>{mobile ? "Gen AI" : "Gen AI Introduction"}</Link>
     <a className="nav-link" href="#paths"><Icon>▦</Icon>{mobile ? "Paths" : "Learning paths"}</a>
     <a className="nav-link" href="#portfolio"><Icon>▤</Icon>{mobile ? "Saved" : "My portfolio"}</a>
     <a className="nav-link" href="#progress"><Icon>◷</Icon>{mobile ? "Progress" : "My progress"}</a>
@@ -252,6 +253,7 @@ export default function LearningShell() {
       </div>
       {message && <p className="inline-error" role="alert">{message}</p>}
       <AIUnderstandingJourney onStartSearchPractice={() => void startLesson()} searchPracticeActionLabel={practiceActionLabel} />
+      <section className="gen-intro-feature" aria-labelledby="gen-intro-feature-title"><div><div className="eyebrow">NEW · FOUR 15-MINUTE MODULES</div><h2 id="gen-intro-feature-title">Gen AI Introduction</h2><p>Learn what generative AI does, follow a scripted chat, build a useful prompt, and choose the right context. Each module links to public learning sources.</p></div><Link className="secondary-button" href="/gen-ai-introduction">Start the introduction →</Link></section>
       <section className="explanation-helper progress-card" aria-labelledby="explanation-helper-title">
         <div className="progress-head"><div><div className="eyebrow">PROMPT PRACTICE · ABOUT 5 MIN</div><strong id="explanation-helper-title">Build a prompt to try with ChatGPT</strong></div><span>Beginner · Copy a prompt for ChatGPT</span></div>
         <p>Start with a topic you are curious about. Choose a style, add the topic, and copy this request into ChatGPT. The preview does not send anything or generate an AI answer in this app.</p>
